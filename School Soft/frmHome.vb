@@ -58,12 +58,67 @@ Public Class frmHome
         End If
 
     End Sub
+    Private Function CheckModuleRights(ByVal modName As String) As Boolean
+        Try
+            If conn.State = ConnectionState.Closed Then
+                conn.Open()
+            End If
+            dbconnection()
+            cmdHome.Connection = conn
+            cmdHome.CommandType = CommandType.Text
+            cmdHome.CommandText = "SELECT * FROM vwUserRights WHERE (userName=@userName) And (domainName=@domainName)" &
+                vbNewLine & " And (modName=@modName) And (userStatus='True') AND (domainStatus='True') AND " &
+                vbNewLine & " (staffStatus='True') AND (modStatus='True') AND (rightAccess='True')"
+            cmdHome.Parameters.Clear()
+            cmdHome.Parameters.AddWithValue("@userName", userName.Trim)
+            cmdHome.Parameters.AddWithValue("@domainName", domainName.Trim)
+            cmdHome.Parameters.AddWithValue("@modName", modName)
+            reader = cmdHome.ExecuteReader
+            If reader.HasRows Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            Return False
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
+    End Function
+
+    Private Function CheckIfModuleRegistered(ByVal modName As String) As Boolean
+        Try
+            If conn.State = ConnectionState.Closed Then
+                conn.Open()
+            End If
+            dbconnection()
+            cmdHome.Connection = conn
+            cmdHome.CommandType = CommandType.Text
+            cmdHome.CommandText = "SELECT * FROM tblModules WHERE (modName=@modName) AND (status='True')"
+            cmdHome.Parameters.Clear()
+            cmdHome.Parameters.AddWithValue("@modName", modName)
+            reader = cmdHome.ExecuteReader
+            If reader.HasRows Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            Return False
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
+    End Function
 
     Private Sub HideTreeViews()
         Me.tvSchool.Visible = False
         Me.tvStudent.Visible = False
         Me.tvAcademics.Visible = False
-        'Me.tvTimeTable.Visible = False
+        Me.tvPayroll.Visible = False
         Me.tvFinance.Visible = False
         ' Me.tvInventory.Visible = False
         ' Me.tvAccommodation.Visible = False
@@ -74,27 +129,11 @@ Public Class frmHome
             If Not IsNothing(NaviBarHome.ActiveBand) Then
                 activeband = Me.NaviBarHome.ActiveBand.Text.Trim
             End If
-
             HideTreeViews()
-            dbconnection()
-            cmdHome.Connection = conn
-            cmdHome.CommandType = CommandType.Text
-            cmdHome.CommandText = "SELECT * FROM vwUserRights WHERE (userName=@userName) And (domainName=@domainName)" &
-                vbNewLine & " And (modName=@modName) And (userStatus='True') AND (domainStatus='True') AND " &
-                vbNewLine & " (staffStatus='True') AND (modStatus='True') AND (rightAccess='True')"
-            cmdHome.Parameters.Clear()
-            cmdHome.Parameters.AddWithValue("@userName", userName.Trim)
-            cmdHome.Parameters.AddWithValue("@domainName", domainName.Trim)
-            cmdHome.Parameters.AddWithValue("@modName", activeband)
-            reader = cmdHome.ExecuteReader
-            If reader.HasRows Then
-                rightAccess = True
-            Else
-                rightAccess = False
-            End If
-
+            rightAccess = False
+            Dim hasRightAccess As Boolean = CheckModuleRights(activeband)
+            rightAccess = hasRightAccess
             If rightAccess = True Then
-
                 Select Case activeband
                     Case "SCHOOL"
                         Me.tvSchool.Visible = True
@@ -105,9 +144,9 @@ Public Class frmHome
                     Case "ACADEMICS"
                         Me.tvAcademics.Visible = True
                         Me.tvAcademics.ExpandAll()
-                    'Case "TIME TABLE"
-                    '    Me.tvTimeTable.Visible = True
-                    '    Me.tvTimeTable.ExpandAll()
+                    Case "PAYROLL"
+                        Me.tvPayroll.Visible = True
+                        Me.tvPayroll.ExpandAll()
                     Case "FINANCE"
                         Me.tvFinance.Visible = True
                         Me.tvFinance.ExpandAll()
@@ -121,11 +160,7 @@ Public Class frmHome
             End If
             activeband = Nothing
         Catch ex As Exception
-
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
@@ -137,24 +172,9 @@ Public Class frmHome
     Private Sub SECURITYToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SECURITYToolStripMenuItem.Click
         Try
             activeband = "SECURITY"
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
-            cmdHome.Connection = conn
-            cmdHome.CommandType = CommandType.Text
-            cmdHome.CommandText = "SELECT * FROM vwUserRights WHERE (userName=@userName) AND (domainName=@domainName)" &
-                vbNewLine & " AND (modName='SECURITY') AND (userStatus='True') AND (domainStatus='True') AND " &
-                vbNewLine & " (staffStatus='True') AND (modStatus='True') AND (rightAccess='True')"
-            cmdHome.Parameters.Clear()
-            cmdHome.Parameters.AddWithValue("@userName", userName.Trim)
-            cmdHome.Parameters.AddWithValue("@domainName", domainName.Trim)
-            reader = cmdHome.ExecuteReader
-            If reader.HasRows Then
-                rightAccess = True
-            Else
-                rightAccess = False
-            End If
+            rightAccess = False
+            Dim hasRightAccess As Boolean = CheckModuleRights(activeband)
+            rightAccess = hasRightAccess
             If rightAccess = False Then
                 MsgBox("You have no rights to access security modules", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
                 Me.SECURITYToolStripMenuItem.Enabled = False
@@ -169,52 +189,20 @@ Public Class frmHome
                 Me.DOMAINSToolStripMenuItem.Enabled = True
                 Me.DOMAINRIGHTSToolStripMenuItem.Enabled = True
             End If
-            reader.Close()
         Catch ex As Exception
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub tvSchool_NodeMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.TreeNodeMouseClickEventArgs) Handles tvSchool.NodeMouseClick
         Try
             rightAccess = False
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
-            cmdHome.Connection = conn
-            cmdHome.CommandType = CommandType.Text
-            cmdHome.CommandText = "SELECT * FROM tblModules WHERE (modName=@modName) AND (status='True')"
-            cmdHome.Parameters.Clear()
-            cmdHome.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-            reader = cmdHome.ExecuteReader
-            If reader.HasRows Then
-                Dim conn2 As New SqlConnection("Server=" & My.Settings.serverName.Trim & ";User ID=" & My.Settings.UserName.Trim & ";Database=" & My.Settings.dbName.Trim & ";Password=" & My.Settings.PassWord.Trim & "")
-                conn2.Open()
-                cmdHome1.CommandText = "SELECT * FROM vwUserRights WHERE (userName=@userName) AND (domainName=@domainName)" &
-                vbNewLine & " AND (modName=@modName) AND (userStatus='True') AND (domainStatus='True') AND " &
-                vbNewLine & " (staffStatus='True') AND (modStatus='True') AND (rightAccess='True')"
-                cmdHome1.CommandType = CommandType.Text
-                cmdHome1.Connection = conn2
-                cmdHome1.Parameters.Clear()
-                cmdHome1.Parameters.AddWithValue("@userName", userName)
-                cmdHome1.Parameters.AddWithValue("@domainName", domainName)
-                cmdHome1.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-                reader1 = cmdHome1.ExecuteReader()
-                If reader1.HasRows Then
-                    rightAccess = True
-                Else
-                    rightAccess = False
-                End If
-                conn2.Close()
-                reader1.Close()
+            Dim moduleExists As Boolean = CheckIfModuleRegistered(e.Node.Text.Trim)
+            If moduleExists Then
+                rightAccess = CheckModuleRights(e.Node.Text.Trim)
             Else
                 rightAccess = True
             End If
-            reader.Close()
             If rightAccess = True Then
                 Select Case e.Node.Name.Trim
                     Case "nodeSchDetails"
@@ -257,49 +245,18 @@ Public Class frmHome
             rightAccess = False
         Catch ex As Exception
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub tvStudent_NodeMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.TreeNodeMouseClickEventArgs) Handles tvStudent.NodeMouseClick
         Try
             rightAccess = False
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
-            cmdHome.Connection = conn
-            cmdHome.CommandType = CommandType.Text
-            cmdHome.CommandText = "SELECT * FROM tblModules WHERE (modName=@modName) AND (status='True')"
-            cmdHome.Parameters.Clear()
-            cmdHome.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-            reader = cmdHome.ExecuteReader
-            If reader.HasRows Then
-                Dim conn2 As New SqlConnection("Server=" & My.Settings.serverName.Trim & ";User ID=" & My.Settings.UserName.Trim & ";Database=" & My.Settings.dbName.Trim & ";Password=" & My.Settings.PassWord.Trim & "")
-                conn2.Open()
-                cmdHome1.CommandText = "SELECT * FROM vwUserRights WHERE (userName=@userName) AND (domainName=@domainName)" &
-                vbNewLine & " AND (modName=@modName) AND (userStatus='True') AND (domainStatus='True') AND " &
-                vbNewLine & " (staffStatus='True') AND (modStatus='True') AND (rightAccess='True')"
-                cmdHome1.CommandType = CommandType.Text
-                cmdHome1.Connection = conn2
-                cmdHome1.Parameters.Clear()
-                cmdHome1.Parameters.AddWithValue("@userName", userName)
-                cmdHome1.Parameters.AddWithValue("@domainName", domainName)
-                cmdHome1.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-                reader1 = cmdHome1.ExecuteReader()
-                If reader1.HasRows Then
-                    rightAccess = True
-                Else
-                    rightAccess = False
-                End If
-                conn2.Close()
-                reader1.Close()
+            Dim moduleExists As Boolean = CheckIfModuleRegistered(e.Node.Text.Trim)
+            If moduleExists Then
+                rightAccess = CheckModuleRights(e.Node.Text.Trim)
             Else
                 rightAccess = True
             End If
-            reader.Close()
             If rightAccess = True Then
                 Select Case e.Node.Name.Trim
                     Case "nodeStudDetails"
@@ -336,9 +293,6 @@ Public Class frmHome
             rightAccess = False
         Catch ex As Exception
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
@@ -350,40 +304,12 @@ Public Class frmHome
     Private Sub tvAcademics_NodeMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.TreeNodeMouseClickEventArgs) Handles tvAcademics.NodeMouseClick
         Try
             rightAccess = False
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
-            cmdHome.Connection = conn
-            cmdHome.CommandType = CommandType.Text
-            cmdHome.CommandText = "SELECT * FROM tblModules WHERE (modName=@modName) AND (status='True')"
-            cmdHome.Parameters.Clear()
-            cmdHome.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-            reader = cmdHome.ExecuteReader
-            If reader.HasRows Then
-                Dim conn2 As New SqlConnection("Server=" & My.Settings.serverName.Trim & ";User ID=" & My.Settings.UserName.Trim & ";Database=" & My.Settings.dbName.Trim & ";Password=" & My.Settings.PassWord.Trim & "")
-                conn2.Open()
-                cmdHome1.CommandText = "SELECT * FROM vwUserRights WHERE (userName=@userName) AND (domainName=@domainName)" &
-                vbNewLine & " AND (modName=@modName) AND (userStatus='True') AND (domainStatus='True') AND " &
-                vbNewLine & " (staffStatus='True') AND (modStatus='True') AND (rightAccess='True')"
-                cmdHome1.CommandType = CommandType.Text
-                cmdHome1.Connection = conn2
-                cmdHome1.Parameters.Clear()
-                cmdHome1.Parameters.AddWithValue("@userName", userName)
-                cmdHome1.Parameters.AddWithValue("@domainName", domainName)
-                cmdHome1.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-                reader1 = cmdHome1.ExecuteReader()
-                If reader1.HasRows Then
-                    rightAccess = True
-                Else
-                    rightAccess = False
-                End If
-                conn2.Close()
-                reader1.Close()
+            Dim moduleExists As Boolean = CheckIfModuleRegistered(e.Node.Text.Trim)
+            If moduleExists Then
+                rightAccess = CheckModuleRights(e.Node.Text.Trim)
             Else
                 rightAccess = True
             End If
-            reader.Close()
             If rightAccess = True Then
                 Select Case e.Node.Name.Trim
                     Case "nodeAcadGrades"
@@ -426,49 +352,18 @@ Public Class frmHome
             rightAccess = False
         Catch ex As Exception
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub tvTimeTable_NodeMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.TreeNodeMouseClickEventArgs)
         Try
             rightAccess = False
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
-            cmdHome.Connection = conn
-            cmdHome.CommandType = CommandType.Text
-            cmdHome.CommandText = "SELECT * FROM tblModules WHERE (modName=@modName) AND (status='True')"
-            cmdHome.Parameters.Clear()
-            cmdHome.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-            reader = cmdHome.ExecuteReader
-            If reader.HasRows Then
-                Dim conn2 As New SqlConnection("Server=" & My.Settings.serverName.Trim & ";User ID=" & My.Settings.UserName.Trim & ";Database=" & My.Settings.dbName.Trim & ";Password=" & My.Settings.PassWord.Trim & "")
-                conn2.Open()
-                cmdHome1.CommandText = "SELECT * FROM vwUserRights WHERE (userName=@userName) AND (domainName=@domainName)" &
-                vbNewLine & " AND (modName=@modName) AND (userStatus='True') AND (domainStatus='True') AND " &
-                vbNewLine & " (staffStatus='True') AND (modStatus='True') AND (rightAccess='True')"
-                cmdHome1.CommandType = CommandType.Text
-                cmdHome1.Connection = conn2
-                cmdHome1.Parameters.Clear()
-                cmdHome1.Parameters.AddWithValue("@userName", userName)
-                cmdHome1.Parameters.AddWithValue("@domainName", domainName)
-                cmdHome1.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-                reader1 = cmdHome1.ExecuteReader()
-                If reader1.HasRows Then
-                    rightAccess = True
-                Else
-                    rightAccess = False
-                End If
-                conn2.Close()
-                reader1.Close()
+            Dim moduleExists As Boolean = CheckIfModuleRegistered(e.Node.Text.Trim)
+            If moduleExists Then
+                rightAccess = CheckModuleRights(e.Node.Text.Trim)
             Else
                 rightAccess = True
             End If
-            reader.Close()
             If rightAccess = True Then
                 Select Case e.Node.Name.Trim
                     Case "nodeTimeTableSetUp"
@@ -508,48 +403,17 @@ Public Class frmHome
             rightAccess = False
         Catch ex As Exception
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
     Private Sub tvFinance_NodeMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.TreeNodeMouseClickEventArgs) Handles tvFinance.NodeMouseClick
         Try
             rightAccess = False
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
-            cmdHome.Connection = conn
-            cmdHome.CommandType = CommandType.Text
-            cmdHome.CommandText = "SELECT * FROM tblModules WHERE (modName=@modName) AND (status='True')"
-            cmdHome.Parameters.Clear()
-            cmdHome.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-            reader = cmdHome.ExecuteReader
-            If reader.HasRows Then
-                Dim conn2 As New SqlConnection("Server=" & My.Settings.serverName.Trim & ";User ID=" & My.Settings.UserName.Trim & ";Database=" & My.Settings.dbName.Trim & ";Password=" & My.Settings.PassWord.Trim & "")
-                conn2.Open()
-                cmdHome1.CommandText = "SELECT * FROM vwUserRights WHERE (userName=@userName) AND (domainName=@domainName)" &
-                vbNewLine & " AND (modName=@modName) AND (userStatus='True') AND (domainStatus='True') AND " &
-                vbNewLine & " (staffStatus='True') AND (modStatus='True') AND (rightAccess='True')"
-                cmdHome1.CommandType = CommandType.Text
-                cmdHome1.Connection = conn2
-                cmdHome1.Parameters.Clear()
-                cmdHome1.Parameters.AddWithValue("@userName", userName)
-                cmdHome1.Parameters.AddWithValue("@domainName", domainName)
-                cmdHome1.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-                reader1 = cmdHome1.ExecuteReader()
-                If reader1.HasRows Then
-                    rightAccess = True
-                Else
-                    rightAccess = False
-                End If
-                conn2.Close()
-                reader1.Close()
+            Dim moduleExists As Boolean = CheckIfModuleRegistered(e.Node.Text.Trim)
+            If moduleExists Then
+                rightAccess = CheckModuleRights(e.Node.Text.Trim)
             Else
                 rightAccess = True
             End If
-            reader.Close()
             If rightAccess = True Then
                 Select Case e.Node.Name.Trim
                     Case "nodeFeeCat"
@@ -654,49 +518,18 @@ Public Class frmHome
             rightAccess = False
         Catch ex As Exception
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub tvInventory_NodeMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.TreeNodeMouseClickEventArgs)
         Try
             rightAccess = False
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
-            cmdHome.Connection = conn
-            cmdHome.CommandType = CommandType.Text
-            cmdHome.CommandText = "SELECT * FROM tblModules WHERE (modName=@modName) AND (status='True')"
-            cmdHome.Parameters.Clear()
-            cmdHome.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-            reader = cmdHome.ExecuteReader
-            If reader.HasRows Then
-                Dim conn2 As New SqlConnection("Server=" & My.Settings.serverName.Trim & ";User ID=" & My.Settings.UserName.Trim & ";Database=" & My.Settings.dbName.Trim & ";Password=" & My.Settings.PassWord.Trim & "")
-                conn2.Open()
-                cmdHome1.CommandText = "SELECT * FROM vwUserRights WHERE (userName=@userName) AND (domainName=@domainName)" &
-                vbNewLine & " AND (modName=@modName) AND (userStatus='True') AND (domainStatus='True') AND " &
-                vbNewLine & " (staffStatus='True') AND (modStatus='True') AND (rightAccess='True')"
-                cmdHome1.CommandType = CommandType.Text
-                cmdHome1.Connection = conn2
-                cmdHome1.Parameters.Clear()
-                cmdHome1.Parameters.AddWithValue("@userName", userName)
-                cmdHome1.Parameters.AddWithValue("@domainName", domainName)
-                cmdHome1.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-                reader1 = cmdHome1.ExecuteReader()
-                If reader1.HasRows Then
-                    rightAccess = True
-                Else
-                    rightAccess = False
-                End If
-                conn2.Close()
-                reader1.Close()
+            Dim moduleExists As Boolean = CheckIfModuleRegistered(e.Node.Text.Trim)
+            If moduleExists Then
+                rightAccess = CheckModuleRights(e.Node.Text.Trim)
             Else
                 rightAccess = True
             End If
-            reader.Close()
             If rightAccess = True Then
                 Select Case e.Node.Name.Trim
                     Case "nodeInvMaster"
@@ -748,49 +581,18 @@ Public Class frmHome
             rightAccess = False
         Catch ex As Exception
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub tvAccommodation_NodeMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.TreeNodeMouseClickEventArgs)
         Try
             rightAccess = False
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
-            cmdHome.Connection = conn
-            cmdHome.CommandType = CommandType.Text
-            cmdHome.CommandText = "SELECT * FROM tblModules WHERE (modName=@modName) AND (status='True')"
-            cmdHome.Parameters.Clear()
-            cmdHome.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-            reader = cmdHome.ExecuteReader
-            If reader.HasRows Then
-                Dim conn2 As New SqlConnection("Server=" & My.Settings.serverName.Trim & ";User ID=" & My.Settings.UserName.Trim & ";Database=" & My.Settings.dbName.Trim & ";Password=" & My.Settings.PassWord.Trim & "")
-                conn2.Open()
-                cmdHome1.CommandText = "SELECT * FROM vwUserRights WHERE (userName=@userName) AND (domainName=@domainName)" &
-                vbNewLine & " AND (modName=@modName) AND (userStatus='True') AND (domainStatus='True') AND " &
-                vbNewLine & " (staffStatus='True') AND (modStatus='True') AND (rightAccess='True')"
-                cmdHome1.CommandType = CommandType.Text
-                cmdHome1.Connection = conn2
-                cmdHome1.Parameters.Clear()
-                cmdHome1.Parameters.AddWithValue("@userName", userName)
-                cmdHome1.Parameters.AddWithValue("@domainName", domainName)
-                cmdHome1.Parameters.AddWithValue("@modName", e.Node.Text.Trim)
-                reader1 = cmdHome1.ExecuteReader()
-                If reader1.HasRows Then
-                    rightAccess = True
-                Else
-                    rightAccess = False
-                End If
-                conn2.Close()
-                reader1.Close()
+            Dim moduleExists As Boolean = CheckIfModuleRegistered(e.Node.Text.Trim)
+            If moduleExists Then
+                rightAccess = CheckModuleRights(e.Node.Text.Trim)
             Else
                 rightAccess = True
             End If
-            reader.Close()
             If rightAccess = True Then
                 Select Case e.Node.Name.Trim
                     Case "nodeIDormMaster"
@@ -815,11 +617,7 @@ Public Class frmHome
             rightAccess = False
         Catch ex As Exception
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
-
     End Sub
 
     Private Sub REVERSEFEESToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles REVERSEFEESToolStripMenuItem.Click
@@ -829,15 +627,45 @@ Public Class frmHome
         End If
     End Sub
 
-    Private Sub tvStudent_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles tvStudent.AfterSelect
-
-    End Sub
-
     Private Sub MANAGEFINANCEPERIODSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MANAGEFINANCEPERIODSToolStripMenuItem.Click
         If domainName.Trim = "ADMINISTRATOR" Or domainName.Trim = "ACCOUNTANT" Then
             frmFinPeriods.MdiParent = Me
             frmFinPeriods.Show()
         End If
     End Sub
+    Private Sub tvPayroll_NodeMouseClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles tvPayroll.NodeMouseClick
+        Try
+            rightAccess = False
+            Dim moduleExists As Boolean = CheckIfModuleRegistered(e.Node.Text.Trim)
+            If moduleExists Then
+                rightAccess = CheckModuleRights(e.Node.Text.Trim)
+            Else
+                rightAccess = True
+            End If
+            If rightAccess = True Then
+                Select Case e.Node.Name.Trim
+                    Case "nodePayrollStaffDetails"
+                        frmSchoolStaff.MdiParent = Me
+                        frmSchoolStaff.Show()
+                    Case "nodeAssignDorms"
+                        frmAccDormStudents.MdiParent = Me
+                        frmAccDormStudents.Show()
+                    Case "nodeAssignHeads"
+                        frmAccDormitoryHeads.MdiParent = Me
+                        frmAccDormitoryHeads.Show()
+                    Case "nodeDormStatus"
+                        frmAccDormRpt.MdiParent = Me
+                        frmAccDormRpt.Show()
+                    Case "nodeStudentsDorms"
+                        frmAccDormStudentsRpt.MdiParent = Me
+                        frmAccDormStudentsRpt.Show()
+                End Select
+            Else
+                MsgBox("You have no rights to access this module!", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
+            End If
+            rightAccess = False
+        Catch ex As Exception
+        Finally
+        End Try
+    End Sub
 End Class
-

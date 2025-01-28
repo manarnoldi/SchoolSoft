@@ -143,6 +143,7 @@ Public Class frmSchoolStaff
                 li.SubItems.Add(IIf(DBNull.Value.Equals(reader!idNumber), "", reader!idNumber))
                 li.SubItems.Add(IIf(DBNull.Value.Equals(reader!religion), "", reader!religion))
                 li.SubItems.Add(IIf(DBNull.Value.Equals(reader!residence), "", reader!residence))
+                li.SubItems.Add(IIf(DBNull.Value.Equals(reader!BasicSalary), "", reader!BasicSalary))
                 li.Tag = IIf(DBNull.Value.Equals(reader!empId), "", reader!empId)
             End While
         End If
@@ -156,6 +157,7 @@ Public Class frmSchoolStaff
         Me.rbMarriedTrue.Checked = False
         Me.rbSexFemale.Checked = False
         Me.rbSexMale.Checked = False
+        Me.txtBasicSalary.Text = ""
         Me.rbHeadTrue.Checked = False
         Me.rbHeadFalse.Checked = False
         Me.txtEmpNo.Tag = Nothing
@@ -167,6 +169,7 @@ Public Class frmSchoolStaff
         Me.txtLName.Text = ""
         Me.txtMName.Text = ""
         Me.txtPhoneNo.Text = ""
+
         loadCombos()
     End Sub
 
@@ -191,12 +194,14 @@ Public Class frmSchoolStaff
             Me.txtIdNo.Enabled = True
             Me.rbSexFemale.Enabled = True
             Me.rbSexMale.Enabled = True
+            Me.txtBasicSalary.Enabled = True
             Me.txtEmpNo.Tag = Nothing
             Me.cboContractType.Text = ""
             Me.cboEmpTitle.Text = ""
             Me.cboEmpType.Text = ""
             Me.cboReligion.Text = ""
             Me.cboResidence.Text = ""
+            Me.txtBasicSalary.Text = ""
             Me.btnDelete.Enabled = False
             Me.btnUpdate.Enabled = False
             Me.btnSave.Enabled = True
@@ -247,10 +252,10 @@ Public Class frmSchoolStaff
             MsgBox("Select Staff Sex", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
             passQuery = False
             Exit Sub
-            'ElseIf Me.txtIdNo.Text.Trim.Length <= 0 Then
-            '    MsgBox("Enter Staff Id Number", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-            '    passQuery = False
-            '    Exit Sub
+        ElseIf Me.txtBasicSalary.Text.Trim.Length <= 0 Then
+            MsgBox("Enter Staff Basic Salary", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
+            passQuery = False
+            Exit Sub
             'ElseIf DateDiff(DateInterval.Day, Date.Now.Date, Me.DTPDOE.Value.Date) > 0 Then
             '    MsgBox("Date of Employment Cannot be more than Today.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
             '    passQuery = False
@@ -303,11 +308,11 @@ Public Class frmSchoolStaff
         dbconnection()
         cmdSchStaff.Connection = conn
         cmdSchStaff.CommandType = CommandType.Text
-        cmdSchStaff.CommandText = "SELECT * FROM  tblSchoolStaff WHERE (status='True')AND (empNo=@empNo)" & _
-            vbNewLine & " AND (idNumber=@idNumber) AND (FName=@FName) AND (MName=@MName) AND (LName=@LName) AND (Email=@Email)" & _
-            vbNewLine & " AND (phoneNo=@phoneNo) AND (sex=@sex) AND (empType=@empType) AND (residence=@residence)" & _
-            vbNewLine & " AND (contactAddress=@contactAddress) AND (title=@title) AND (dateOfEmployment=@dateOfEmployment)" & _
-            vbNewLine & " AND (dateOfBirth=@dateOfBirth) AND (dateOfReg=@dateOfReg) AND (regBy=@regBy)" & _
+        cmdSchStaff.CommandText = "SELECT * FROM  tblSchoolStaff WHERE (status='True')AND (empNo=@empNo)" &
+            vbNewLine & " AND (idNumber=@idNumber) AND (FName=@FName) AND (MName=@MName) AND (LName=@LName) AND (Email=@Email)" &
+            vbNewLine & " AND (phoneNo=@phoneNo) AND (sex=@sex) AND (empType=@empType) AND (residence=@residence)" &
+            vbNewLine & " AND (contactAddress=@contactAddress) AND (title=@title) AND (dateOfEmployment=@dateOfEmployment)" &
+            vbNewLine & " AND (dateOfBirth=@dateOfBirth) AND (dateOfReg=@dateOfReg) AND (regBy=@regBy) AND (BasicSalary=@BasicSalary)" &
             vbNewLine & " AND (maritalStatus=@maritalStatus) AND (contractType=@contractType) AND (religion=@religion)"
         cmdSchStaff.Parameters.Clear()
         cmdSchStaff.Parameters.AddWithValue("@empNo", Me.txtEmpNo.Text.Trim)
@@ -329,6 +334,7 @@ Public Class frmSchoolStaff
         cmdSchStaff.Parameters.AddWithValue("@maritalStatus", MaritalStatus)
         cmdSchStaff.Parameters.AddWithValue("@contractType", Me.cboContractType.Text.Trim)
         cmdSchStaff.Parameters.AddWithValue("@religion", Me.cboReligion.Text.Trim)
+        cmdSchStaff.Parameters.AddWithValue("@BasicSalary", Me.txtBasicSalary.Text.Trim)
         reader = cmdSchStaff.ExecuteReader
         If reader.HasRows Then
             recordExists = True
@@ -411,6 +417,7 @@ Public Class frmSchoolStaff
                 cmdSchStaff.Parameters.AddWithValue("@contractType", Me.cboContractType.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@religion", Me.cboReligion.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@isHead", isHead)
+                cmdSchStaff.Parameters.AddWithValue("@BasicSalary", Me.txtBasicSalary.Text.Trim)
                 Rec = cmdSchStaff.ExecuteNonQuery
                 If Rec > 0 Then
                     MsgBox("Record Saved!", MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "SuccessFul Transaction")
@@ -424,6 +431,7 @@ Public Class frmSchoolStaff
             Me.DTPDOR.Enabled = True
             Me.txtEmpNo.Enabled = True
             Me.txtIdNo.Enabled = True
+            Me.txtBasicSalary.Enabled = True
             Me.rbSexFemale.Enabled = True
             Me.rbSexMale.Enabled = True
             Me.btnSave.Enabled = True
@@ -473,6 +481,7 @@ Public Class frmSchoolStaff
                         Me.txtEmail.Text = IIf(DBNull.Value.Equals(reader!Email), "", reader!Email)
                         Me.txtPhoneNo.Text = IIf(DBNull.Value.Equals(reader!phoneNo), "", reader!phoneNo)
                         Me.txtIdNo.Text = IIf(DBNull.Value.Equals(reader!idNumber), "", reader!idNumber)
+                        Me.txtBasicSalary.Text = IIf(DBNull.Value.Equals(reader!BasicSalary), "", reader!BasicSalary)
                         Me.cboReligion.Text = IIf(DBNull.Value.Equals(reader!religion), "", reader!religion)
                         Me.DTPDOB.Value = IIf(DBNull.Value.Equals(reader!dateOfBirth), Date.Now.Date, reader!dateOfBirth)
                         Me.DTPDOE.Value = IIf(DBNull.Value.Equals(reader!dateOfEmployment), Date.Now.Date, reader!dateOfEmployment)
@@ -590,6 +599,7 @@ Public Class frmSchoolStaff
                 cmdSchStaff.Parameters.AddWithValue("@religion", Me.cboReligion.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@isHead", isHead)
                 cmdSchStaff.Parameters.AddWithValue("@idNumber", Me.txtIdNo.Text.Trim)
+                cmdSchStaff.Parameters.AddWithValue("@BasicSalary", Me.txtBasicSalary.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@sex", sex)
                 Rec = cmdSchStaff.ExecuteNonQuery
                 If Rec > 0 Then
@@ -603,6 +613,7 @@ Public Class frmSchoolStaff
                 Me.DTPDOR.Enabled = True
                 Me.txtEmpNo.Enabled = True
                 Me.txtIdNo.Enabled = True
+                Me.txtBasicSalary.Enabled = True
                 Me.rbSexFemale.Enabled = True
                 Me.rbSexMale.Enabled = True
                 Me.btnSave.Enabled = True
@@ -653,6 +664,7 @@ Public Class frmSchoolStaff
                 cmdSchStaff.Parameters.AddWithValue("@regBy", userName.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@contractType", Me.cboContractType.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@religion", Me.cboReligion.Text.Trim)
+                cmdSchStaff.Parameters.AddWithValue("@BasicSalary", Me.txtBasicSalary.Text.Trim)
                 Rec = cmdSchStaff.ExecuteNonQuery
                 If Rec > 0 Then
                     MsgBox("Record Deleted!", MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "SuccessFul Transaction")
@@ -665,6 +677,7 @@ Public Class frmSchoolStaff
                 Me.DTPDOR.Enabled = True
                 Me.txtEmpNo.Enabled = True
                 Me.txtIdNo.Enabled = True
+                Me.txtBasicSalary.Enabled = True
                 Me.rbSexFemale.Enabled = True
                 Me.rbSexMale.Enabled = True
                 Me.btnSave.Enabled = True
@@ -686,7 +699,4 @@ Public Class frmSchoolStaff
         End Try
     End Sub
 
-    Private Sub txtEmail_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtEmail.TextChanged
-
-    End Sub
 End Class

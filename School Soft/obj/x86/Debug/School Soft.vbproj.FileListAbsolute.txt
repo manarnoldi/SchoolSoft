@@ -661,3 +661,4 @@ C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Deb
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.Windows.Forms.dll
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\AxShockwaveFlashObjects.dll
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.exe.config
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollPAYE.resources

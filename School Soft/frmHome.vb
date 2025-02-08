@@ -647,9 +647,9 @@ Public Class frmHome
                     Case "nodePayrollStaffDetails"
                         frmSchoolStaff.MdiParent = Me
                         frmSchoolStaff.Show()
-                    Case "nodeAssignDorms"
-                        frmAccDormStudents.MdiParent = Me
-                        frmAccDormStudents.Show()
+                    Case "nodePAYETable"
+                        frmPayrollPAYE.MdiParent = Me
+                        frmPayrollPAYE.Show()
                     Case "nodeAssignHeads"
                         frmAccDormitoryHeads.MdiParent = Me
                         frmAccDormitoryHeads.Show()

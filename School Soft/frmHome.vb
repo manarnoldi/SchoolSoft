@@ -650,12 +650,12 @@ Public Class frmHome
                     Case "nodePAYETable"
                         frmPayrollPAYE.MdiParent = Me
                         frmPayrollPAYE.Show()
-                    Case "nodeAssignHeads"
-                        frmAccDormitoryHeads.MdiParent = Me
-                        frmAccDormitoryHeads.Show()
-                    Case "nodeDormStatus"
-                        frmAccDormRpt.MdiParent = Me
-                        frmAccDormRpt.Show()
+                    Case "nodeReliefs"
+                        frmPayrollReliefs.MdiParent = Me
+                        frmPayrollReliefs.Show()
+                    Case "nodeDeductions"
+                        frmPayrollDeductions.MdiParent = Me
+                        frmPayrollDeductions.Show()
                     Case "nodeStudentsDorms"
                         frmAccDormStudentsRpt.MdiParent = Me
                         frmAccDormStudentsRpt.Show()
@@ -667,5 +667,9 @@ Public Class frmHome
         Catch ex As Exception
         Finally
         End Try
+    End Sub
+
+    Private Sub tvPayroll_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles tvPayroll.AfterSelect
+
     End Sub
 End Class

@@ -128,6 +128,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Payroll\frmPayrollDeductions.Designer.vb">
+      <DependentUpon>frmPayrollDeductions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payroll\frmPayrollDeductions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payroll\frmPayrollReliefs.Designer.vb">
+      <DependentUpon>frmPayrollReliefs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payroll\frmPayrollReliefs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\crtAcadResultsGradeClass.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1133,6 +1145,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Payroll\frmPayrollDeductions.resx">
+      <DependentUpon>frmPayrollDeductions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payroll\frmPayrollReliefs.resx">
+      <DependentUpon>frmPayrollReliefs.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\crtAcadResultsGradeClass.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crtAcadResultsGradeClass.vb</LastGenOutput>

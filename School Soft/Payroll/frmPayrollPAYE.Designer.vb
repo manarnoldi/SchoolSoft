@@ -49,10 +49,10 @@ Partial Class frmPayrollPAYE
         Me.Label6 = New System.Windows.Forms.Label()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnView = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -169,8 +169,8 @@ Partial Class frmPayrollPAYE
         '
         Me.ToolStripStatusLabel1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(184, 20)
-        Me.ToolStripStatusLabel1.Text = "INVENTORY RECEIPTS"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(181, 20)
+        Me.ToolStripStatusLabel1.Text = "PAYROLL PAYE TABLE"
         '
         'Panel2
         '
@@ -328,6 +328,16 @@ Partial Class frmPayrollPAYE
         Me.Panel4.Size = New System.Drawing.Size(1285, 57)
         Me.Panel4.TabIndex = 38
         '
+        'btnSave
+        '
+        Me.btnSave.Location = New System.Drawing.Point(778, 13)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(100, 28)
+        Me.btnSave.TabIndex = 8
+        Me.btnSave.Text = "Save New"
+        Me.btnSave.UseVisualStyleBackColor = True
+        '
         'btnClear
         '
         Me.btnClear.Location = New System.Drawing.Point(17, 13)
@@ -357,16 +367,6 @@ Partial Class frmPayrollPAYE
         Me.btnClose.TabIndex = 6
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
-        '
-        'btnSave
-        '
-        Me.btnSave.Location = New System.Drawing.Point(778, 13)
-        Me.btnSave.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(100, 28)
-        Me.btnSave.TabIndex = 8
-        Me.btnSave.Text = "Save New"
-        Me.btnSave.UseVisualStyleBackColor = True
         '
         'frmPayrollPAYE
         '

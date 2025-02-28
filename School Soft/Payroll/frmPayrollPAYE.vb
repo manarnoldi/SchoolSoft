@@ -7,19 +7,7 @@ Public Class frmPayrollPAYE
     Dim rec As Integer = 0
     Dim queryType As String = Nothing
     Private Sub frmPayrollPAYE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
-            loadList()
-        Catch ex As Exception
-            MsgBox(Err.GetException.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
+        loadList()
     End Sub
 
     Private Sub ClearControls()
@@ -32,30 +20,36 @@ Public Class frmPayrollPAYE
     End Sub
 
     Private Sub loadList()
-        If conn.State = ConnectionState.Closed Then
-            conn.Open()
-        End If
-        dbconnection()
-        Me.lstPayrollPAYE.Items.Clear()
-        Me.lstPayrollPAYE.Items.Clear()
-
-        cmdPayrollPAYE.Connection = conn
-        cmdPayrollPAYE.CommandText = "SELECT * FROM tblPayrollPAYE ORDER BY TaxRate"
-        cmdPayrollPAYE.CommandType = CommandType.Text
-        cmdPayrollPAYE.Parameters.Clear()
-        reader = cmdPayrollPAYE.ExecuteReader
-        If reader.HasRows Then
-            While reader.Read
-                li = Me.lstPayrollPAYE.Items.Add(IIf(DBNull.Value.Equals(reader!MonthMinimum), "", reader!MonthMinimum))
-                li.SubItems.Add(IIf(DBNull.Value.Equals(reader!MonthMaximum), "", reader!MonthMaximum))
-                li.SubItems.Add(IIf(DBNull.Value.Equals(reader!YearMinimum), "", reader!YearMinimum))
-                li.SubItems.Add(IIf(DBNull.Value.Equals(reader!YearMaximum), "", reader!YearMaximum))
-                li.SubItems.Add(IIf(DBNull.Value.Equals(reader!TaxRate), "", reader!TaxRate))
-                li.SubItems.Add(IIf(DBNull.Value.Equals(reader!Comments), "", reader!Comments))
-                li.Tag = IIf(DBNull.Value.Equals(reader!Id), "", reader!Id)
-            End While
-        End If
-        reader.Close()
+        Try
+            If conn.State = ConnectionState.Closed Then
+                conn.Open()
+            End If
+            dbconnection()
+            Me.lstPayrollPAYE.Items.Clear()
+            cmdPayrollPAYE.Connection = conn
+            cmdPayrollPAYE.CommandText = "SELECT * FROM tblPayrollPAYE ORDER BY TaxRate"
+            cmdPayrollPAYE.CommandType = CommandType.Text
+            cmdPayrollPAYE.Parameters.Clear()
+            reader = cmdPayrollPAYE.ExecuteReader
+            If reader.HasRows Then
+                While reader.Read
+                    li = Me.lstPayrollPAYE.Items.Add(IIf(DBNull.Value.Equals(reader!MonthMinimum), "", reader!MonthMinimum))
+                    li.SubItems.Add(IIf(DBNull.Value.Equals(reader!MonthMaximum), "", reader!MonthMaximum))
+                    li.SubItems.Add(IIf(DBNull.Value.Equals(reader!YearMinimum), "", reader!YearMinimum))
+                    li.SubItems.Add(IIf(DBNull.Value.Equals(reader!YearMaximum), "", reader!YearMaximum))
+                    li.SubItems.Add(IIf(DBNull.Value.Equals(reader!TaxRate), "", reader!TaxRate))
+                    li.SubItems.Add(IIf(DBNull.Value.Equals(reader!Comments), "", reader!Comments))
+                    li.Tag = IIf(DBNull.Value.Equals(reader!Id), "", reader!Id)
+                End While
+            End If
+            reader.Close()
+        Catch ex As Exception
+            MsgBox(Err.GetException.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
     End Sub
 
     Private Sub frmPayrollPAYE_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
@@ -75,7 +69,6 @@ Public Class frmPayrollPAYE
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         Me.ClearControls()
-        Me.lstPayrollPAYE.Items.Clear()
         Me.btnSave.Text = "Save New"
     End Sub
 
@@ -111,15 +104,14 @@ Public Class frmPayrollPAYE
             queryType = "UPDATE"
         End If
         Try
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
             Dim result As MsgBoxResult = MsgBox(Me.btnSave.Text + " Record?", MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.YesNo, "Confirm Transaction")
             If result = MsgBoxResult.No Then
                 Exit Sub
             End If
-
+            If conn.State = ConnectionState.Closed Then
+                conn.Open()
+            End If
+            dbconnection()
             rec = 0
             Me.cmdPayrollPAYE.Connection = conn
             Me.cmdPayrollPAYE.CommandType = CommandType.StoredProcedure
@@ -136,7 +128,6 @@ Public Class frmPayrollPAYE
             If Me.btnSave.Text = "Update" Then
                 Me.cmdPayrollPAYE.Parameters.AddWithValue("@Id", Me.txtMonthMinimum.Tag)
             End If
-
             rec = Me.cmdPayrollPAYE.ExecuteNonQuery
             If rec > 0 Then
                 MsgBox(If(Me.btnSave.Text = "Update", "Record Updated", "Record Saved"), MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "SuccessFull Transaction")
@@ -169,4 +160,7 @@ Public Class frmPayrollPAYE
         End If
     End Sub
 
+    Private Sub lstPayrollPAYE_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstPayrollPAYE.SelectedIndexChanged
+
+    End Sub
 End Class

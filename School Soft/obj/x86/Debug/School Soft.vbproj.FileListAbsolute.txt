@@ -527,7 +527,11 @@ C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Deb
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\School Soft.exe
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\School Soft.pdb
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\School Soft.xml
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.Web.dll
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportSource.dll
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.Shared.dll
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.Windows.Forms.dll
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportAppServer.DataDefModel.dll
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportAppServer.ClientDoc.dll
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportAppServer.ReportDefModel.dll
@@ -538,10 +542,15 @@ C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Deb
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportAppServer.CubeDefModel.dll
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\AxShockwaveFlashObjects.dll
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\stdole.dll
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\ShockwaveFlashObjects.dll
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\stdole.dll
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.vbproj.AssemblyReference.cache
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.exe.config
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.vbproj.ResolveComReference.cache
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollDeductions.resources
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollReliefs.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmAcadExaminationNames.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmAcadExamResultsView.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmAcadGrades.resources
@@ -571,6 +580,7 @@ C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmFinFeeReceipt1.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmFinFeeReceipt2.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmFinFeeStatement.resources
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmFinPeriods.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmFinRptExpenses.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmFinRptExpensesApprovals.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmFinRptExpensesReversals.resources
@@ -646,19 +656,10 @@ C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmUsers.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.Resources.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmSearchStudentDetails.resources
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollPAYE.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.vbproj.GenerateResource.cache
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.vbproj.CoreCompileInputs.cache
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.vbproj.CopyComplete
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.exe
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.xml
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.pdb
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.vbproj.AssemblyReference.cache
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmFinPeriods.resources
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportAppServer.CommLayer.dll
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.ReportSource.dll
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.Shared.dll
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\CrystalDecisions.Windows.Forms.dll
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\bin\Debug\AxShockwaveFlashObjects.dll
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.exe.config
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollPAYE.resources

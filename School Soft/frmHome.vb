@@ -659,6 +659,9 @@ Public Class frmHome
                     Case "nodeAllowances"
                         frmPayrollAllowances.MdiParent = Me
                         frmPayrollAllowances.Show()
+                    Case "nodeNSSFTable"
+                        frmPayrollNSSF.MdiParent = Me
+                        frmPayrollNSSF.Show()
                 End Select
             Else
                 MsgBox("You have no rights to access this module!", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")

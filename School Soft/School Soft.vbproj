@@ -140,6 +140,12 @@
     <Compile Include="Payroll\frmPayrollDeductions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payroll\frmPayrollNSSF.Designer.vb">
+      <DependentUpon>frmPayrollNSSF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payroll\frmPayrollNSSF.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payroll\frmPayrollReliefs.Designer.vb">
       <DependentUpon>frmPayrollReliefs.vb</DependentUpon>
     </Compile>
@@ -1156,6 +1162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payroll\frmPayrollDeductions.resx">
       <DependentUpon>frmPayrollDeductions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payroll\frmPayrollNSSF.resx">
+      <DependentUpon>frmPayrollNSSF.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payroll\frmPayrollReliefs.resx">
       <DependentUpon>frmPayrollReliefs.vb</DependentUpon>

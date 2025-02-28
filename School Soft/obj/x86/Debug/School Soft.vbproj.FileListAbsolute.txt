@@ -663,3 +663,4 @@ C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.exe
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.xml
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.pdb
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollAllowances.resources

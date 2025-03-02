@@ -140,6 +140,18 @@
     <Compile Include="Payroll\frmPayrollDeductions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payroll\frmPayrollEmployeeAllowance.Designer.vb">
+      <DependentUpon>frmPayrollEmployeeAllowance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payroll\frmPayrollEmployeeAllowance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payroll\frmPayrollEmployeeDeduction.Designer.vb">
+      <DependentUpon>frmPayrollEmployeeDeduction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payroll\frmPayrollEmployeeDeduction.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payroll\frmPayrollNSSF.Designer.vb">
       <DependentUpon>frmPayrollNSSF.vb</DependentUpon>
     </Compile>
@@ -1168,6 +1180,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payroll\frmPayrollDeductions.resx">
       <DependentUpon>frmPayrollDeductions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payroll\frmPayrollEmployeeAllowance.resx">
+      <DependentUpon>frmPayrollEmployeeAllowance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payroll\frmPayrollEmployeeDeduction.resx">
+      <DependentUpon>frmPayrollEmployeeDeduction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payroll\frmPayrollNSSF.resx">
       <DependentUpon>frmPayrollNSSF.vb</DependentUpon>

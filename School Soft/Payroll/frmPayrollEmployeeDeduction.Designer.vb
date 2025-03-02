@@ -37,6 +37,10 @@ Partial Class frmPayrollEmployeeDeduction
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.UPDATEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DELETEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CLOSEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.StatusStrip2 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
@@ -53,18 +57,14 @@ Partial Class frmPayrollEmployeeDeduction
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cboEmployeeName = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.UPDATEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DELETEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CLOSEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel7.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.StatusStrip2.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -214,6 +214,33 @@ Partial Class frmPayrollEmployeeDeduction
         '
         Me.ColumnHeader3.Text = "Amount (Ksh)"
         Me.ColumnHeader3.Width = 200
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.BackColor = System.Drawing.Color.LightSeaGreen
+        Me.ContextMenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPDATEToolStripMenuItem, Me.DELETEToolStripMenuItem, Me.CLOSEToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(140, 88)
+        '
+        'UPDATEToolStripMenuItem
+        '
+        Me.UPDATEToolStripMenuItem.Name = "UPDATEToolStripMenuItem"
+        Me.UPDATEToolStripMenuItem.Size = New System.Drawing.Size(139, 28)
+        Me.UPDATEToolStripMenuItem.Text = "EDIT"
+        '
+        'DELETEToolStripMenuItem
+        '
+        Me.DELETEToolStripMenuItem.Name = "DELETEToolStripMenuItem"
+        Me.DELETEToolStripMenuItem.Size = New System.Drawing.Size(139, 28)
+        Me.DELETEToolStripMenuItem.Text = "DELETE"
+        '
+        'CLOSEToolStripMenuItem
+        '
+        Me.CLOSEToolStripMenuItem.Name = "CLOSEToolStripMenuItem"
+        Me.CLOSEToolStripMenuItem.Size = New System.Drawing.Size(139, 28)
+        Me.CLOSEToolStripMenuItem.Text = "CLOSE"
         '
         'Panel1
         '
@@ -388,33 +415,6 @@ Partial Class frmPayrollEmployeeDeduction
         Me.Label6.TabIndex = 16
         Me.Label6.Text = "Employee Name:"
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.BackColor = System.Drawing.Color.LightSeaGreen
-        Me.ContextMenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPDATEToolStripMenuItem, Me.DELETEToolStripMenuItem, Me.CLOSEToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(140, 88)
-        '
-        'UPDATEToolStripMenuItem
-        '
-        Me.UPDATEToolStripMenuItem.Name = "UPDATEToolStripMenuItem"
-        Me.UPDATEToolStripMenuItem.Size = New System.Drawing.Size(139, 28)
-        Me.UPDATEToolStripMenuItem.Text = "EDIT"
-        '
-        'DELETEToolStripMenuItem
-        '
-        Me.DELETEToolStripMenuItem.Name = "DELETEToolStripMenuItem"
-        Me.DELETEToolStripMenuItem.Size = New System.Drawing.Size(139, 28)
-        Me.DELETEToolStripMenuItem.Text = "DELETE"
-        '
-        'CLOSEToolStripMenuItem
-        '
-        Me.CLOSEToolStripMenuItem.Name = "CLOSEToolStripMenuItem"
-        Me.CLOSEToolStripMenuItem.Size = New System.Drawing.Size(139, 28)
-        Me.CLOSEToolStripMenuItem.Text = "CLOSE"
-        '
         'frmPayrollEmployeeDeduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -430,13 +430,13 @@ Partial Class frmPayrollEmployeeDeduction
         Me.Panel7.ResumeLayout(False)
         Me.Panel7.PerformLayout()
         Me.Panel3.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.StatusStrip2.ResumeLayout(False)
         Me.StatusStrip2.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

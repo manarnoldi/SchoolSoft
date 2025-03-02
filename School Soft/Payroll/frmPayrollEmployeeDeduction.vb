@@ -187,74 +187,6 @@ Public Class frmPayrollEmployeeDeduction
         Me.lstPayrollEmployeeDeductions.Items.Clear()
         Me.btnSave.Text = "Save New"
     End Sub
-    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        Dim amountTry As Single
-        If Me.cboEmployeeName.SelectedIndex < 0 Or Me.cboEmployeeName.Text = "" Then
-            MsgBox("Select employee name.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-            Exit Sub
-        ElseIf Me.cboDeductionName.SelectedIndex < 0 Or Me.cboDeductionName.Text = "" Then
-            MsgBox("Select deduction name.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-            Exit Sub
-        ElseIf Me.txtAmount.Text.Trim.Length <= 0 Then
-            MsgBox("Deduction amount is missing.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-            Exit Sub
-        ElseIf Not Single.TryParse(Me.txtAmount.Text, amountTry) Then
-            MsgBox("Enter correct amount.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-            Me.txtAmount.Clear()
-            Exit Sub
-        End If
-
-        For i = 0 To Me.lstPayrollEmployeeDeductions.Items.Count - 1
-            If Me.cboDeductionName.Text.Trim = Me.lstPayrollEmployeeDeductions.Items(i).Text.Trim Then
-                MsgBox("Deduction already added for the employee.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-                Exit Sub
-            End If
-        Next
-
-        queryType = "INSERT"
-        If Me.btnSave.Text = "Update" Then
-            queryType = "UPDATE"
-        End If
-        Try
-            Dim result As MsgBoxResult = MsgBox(Me.btnSave.Text + " Record?", MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.YesNo, "Confirm Transaction")
-            If result = MsgBoxResult.No Then
-                Exit Sub
-            End If
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            dbconnection()
-            rec = 0
-            Me.cmdEmployeeDeductions.Connection = conn
-            Me.cmdEmployeeDeductions.CommandType = CommandType.StoredProcedure
-            Me.cmdEmployeeDeductions.CommandText = "sprocPayrollEmployeeDeduction"
-            Me.cmdEmployeeDeductions.Parameters.Clear()
-            Me.cmdEmployeeDeductions.Parameters.AddWithValue("@EmpId", Me.cboEmployeeName.SelectedItem.Key)
-            Me.cmdEmployeeDeductions.Parameters.AddWithValue("@DeductionId", Me.cboDeductionName.SelectedItem.Key)
-            Me.cmdEmployeeDeductions.Parameters.AddWithValue("@Amount", Me.txtAmount.Text)
-            Me.cmdEmployeeDeductions.Parameters.AddWithValue("@regBy", userName.Trim)
-            Me.cmdEmployeeDeductions.Parameters.AddWithValue("@queryType", queryType)
-            If Me.btnSave.Text = "Update" Then
-                Me.cmdEmployeeDeductions.Parameters.AddWithValue("@Id", Me.cboEmployeeName.Tag)
-            End If
-            rec = Me.cmdEmployeeDeductions.ExecuteNonQuery
-            If rec > 0 Then
-                MsgBox(If(Me.btnSave.Text = "Update", "Record Updated", "Record Saved"), MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "SuccessFull Transaction")
-            End If
-            Me.btnSave.Text = "Save New"
-            Me.loadDeductions(Me.cboEmployeeName.SelectedItem.Key)
-            Me.cboDeductionName.SelectedIndex = -1
-            Me.cboDeductionName.Text = ""
-            Me.txtAbbreviation.Clear()
-            Me.txtAmount.Clear()
-        Catch ex As Exception
-            MsgBox(Err.GetException.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
-    End Sub
 
     Private Sub CLOSEToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CLOSEToolStripMenuItem.Click
         Me.Close()
@@ -343,5 +275,74 @@ Public Class frmPayrollEmployeeDeduction
                 End If
             End Try
         End If
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Dim amountTry As Single
+        If Me.cboEmployeeName.SelectedIndex < 0 Or Me.cboEmployeeName.Text = "" Then
+            MsgBox("Select employee name.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
+            Exit Sub
+        ElseIf Me.cboDeductionName.SelectedIndex < 0 Or Me.cboDeductionName.Text = "" Then
+            MsgBox("Select deduction name.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
+            Exit Sub
+        ElseIf Me.txtAmount.Text.Trim.Length <= 0 Then
+            MsgBox("Deduction amount is missing.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
+            Exit Sub
+        ElseIf Not Single.TryParse(Me.txtAmount.Text, amountTry) Then
+            MsgBox("Enter correct amount.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
+            Me.txtAmount.Clear()
+            Exit Sub
+        End If
+
+        For i = 0 To Me.lstPayrollEmployeeDeductions.Items.Count - 1
+            If Me.cboDeductionName.Text.Trim = Me.lstPayrollEmployeeDeductions.Items(i).Text.Trim Then
+                MsgBox("Deduction already added for the employee.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
+                Exit Sub
+            End If
+        Next
+
+        queryType = "INSERT"
+        If Me.btnSave.Text = "Update" Then
+            queryType = "UPDATE"
+        End If
+        Try
+            Dim result As MsgBoxResult = MsgBox(Me.btnSave.Text + " Record?", MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.YesNo, "Confirm Transaction")
+            If result = MsgBoxResult.No Then
+                Exit Sub
+            End If
+            If conn.State = ConnectionState.Closed Then
+                conn.Open()
+            End If
+            dbconnection()
+            rec = 0
+            Me.cmdEmployeeDeductions.Connection = conn
+            Me.cmdEmployeeDeductions.CommandType = CommandType.StoredProcedure
+            Me.cmdEmployeeDeductions.CommandText = "sprocPayrollEmployeeDeduction"
+            Me.cmdEmployeeDeductions.Parameters.Clear()
+            Me.cmdEmployeeDeductions.Parameters.AddWithValue("@EmpId", Me.cboEmployeeName.SelectedItem.Key)
+            Me.cmdEmployeeDeductions.Parameters.AddWithValue("@DeductionId", Me.cboDeductionName.SelectedItem.Key)
+            Me.cmdEmployeeDeductions.Parameters.AddWithValue("@Amount", Me.txtAmount.Text)
+            Me.cmdEmployeeDeductions.Parameters.AddWithValue("@regBy", userName.Trim)
+            Me.cmdEmployeeDeductions.Parameters.AddWithValue("@queryType", queryType)
+            If Me.btnSave.Text = "Update" Then
+                Me.cmdEmployeeDeductions.Parameters.AddWithValue("@Id", Me.cboEmployeeName.Tag)
+            End If
+            rec = Me.cmdEmployeeDeductions.ExecuteNonQuery
+            If rec > 0 Then
+                MsgBox(If(Me.btnSave.Text = "Update", "Record Updated", "Record Saved"), MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "SuccessFull Transaction")
+            End If
+            Me.btnSave.Text = "Save New"
+            Me.loadDeductions(Me.cboEmployeeName.SelectedItem.Key)
+            Me.cboDeductionName.SelectedIndex = -1
+            Me.cboDeductionName.Text = ""
+            Me.txtAbbreviation.Clear()
+            Me.txtAmount.Clear()
+        Catch ex As Exception
+            MsgBox(Err.GetException.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
     End Sub
 End Class

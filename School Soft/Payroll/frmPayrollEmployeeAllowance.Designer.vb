@@ -22,14 +22,15 @@ Partial Class frmPayrollEmployeeAllowance
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.txtAmount = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txtAbbreviation = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.cboDeductionName = New System.Windows.Forms.ComboBox()
+        Me.cboAllowanceName = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.lstPayrollEmployeeAllowances = New System.Windows.Forms.ListView()
@@ -42,9 +43,7 @@ Partial Class frmPayrollEmployeeAllowance
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.btnClose = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnUpdate = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.txtContractType = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -54,6 +53,10 @@ Partial Class frmPayrollEmployeeAllowance
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cboEmployeeName = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.UPDATEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DELETEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CLOSEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel7.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -61,6 +64,7 @@ Partial Class frmPayrollEmployeeAllowance
         Me.StatusStrip2.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -74,7 +78,7 @@ Partial Class frmPayrollEmployeeAllowance
         Me.TableLayoutPanel1.Controls.Add(Me.StatusStrip1, 0, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel4, 0, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel2, 0, 1)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(12, 12)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(13, 11)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 6
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.95238!))
@@ -89,12 +93,12 @@ Partial Class frmPayrollEmployeeAllowance
         'Panel7
         '
         Me.Panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel7.Controls.Add(Me.btnAdd)
+        Me.Panel7.Controls.Add(Me.btnSave)
         Me.Panel7.Controls.Add(Me.txtAmount)
         Me.Panel7.Controls.Add(Me.Label7)
         Me.Panel7.Controls.Add(Me.txtAbbreviation)
         Me.Panel7.Controls.Add(Me.Label5)
-        Me.Panel7.Controls.Add(Me.cboDeductionName)
+        Me.Panel7.Controls.Add(Me.cboAllowanceName)
         Me.Panel7.Controls.Add(Me.Label4)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel7.Location = New System.Drawing.Point(3, 136)
@@ -102,15 +106,15 @@ Partial Class frmPayrollEmployeeAllowance
         Me.Panel7.Size = New System.Drawing.Size(1048, 87)
         Me.Panel7.TabIndex = 41
         '
-        'btnAdd
+        'btnSave
         '
-        Me.btnAdd.Location = New System.Drawing.Point(788, 50)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(244, 28)
-        Me.btnAdd.TabIndex = 12
-        Me.btnAdd.Text = "Add Allowance"
-        Me.btnAdd.UseVisualStyleBackColor = True
+        Me.btnSave.Location = New System.Drawing.Point(788, 50)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(244, 28)
+        Me.btnSave.TabIndex = 12
+        Me.btnSave.Text = "Save New"
+        Me.btnSave.UseVisualStyleBackColor = True
         '
         'txtAmount
         '
@@ -150,14 +154,14 @@ Partial Class frmPayrollEmployeeAllowance
         Me.Label5.TabIndex = 41
         Me.Label5.Text = "Abbreviation:"
         '
-        'cboDeductionName
+        'cboAllowanceName
         '
-        Me.cboDeductionName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboDeductionName.FormattingEnabled = True
-        Me.cboDeductionName.Location = New System.Drawing.Point(153, 17)
-        Me.cboDeductionName.Name = "cboDeductionName"
-        Me.cboDeductionName.Size = New System.Drawing.Size(500, 24)
-        Me.cboDeductionName.TabIndex = 42
+        Me.cboAllowanceName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboAllowanceName.FormattingEnabled = True
+        Me.cboAllowanceName.Location = New System.Drawing.Point(153, 17)
+        Me.cboAllowanceName.Name = "cboAllowanceName"
+        Me.cboAllowanceName.Size = New System.Drawing.Size(500, 24)
+        Me.cboAllowanceName.TabIndex = 42
         '
         'Label4
         '
@@ -165,7 +169,7 @@ Partial Class frmPayrollEmployeeAllowance
         Me.Label4.Location = New System.Drawing.Point(13, 17)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(116, 17)
+        Me.Label4.Size = New System.Drawing.Size(145, 21)
         Me.Label4.TabIndex = 41
         Me.Label4.Text = "Allowance Name:"
         '
@@ -183,6 +187,7 @@ Partial Class frmPayrollEmployeeAllowance
         '
         Me.lstPayrollEmployeeAllowances.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lstPayrollEmployeeAllowances.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3})
+        Me.lstPayrollEmployeeAllowances.ContextMenuStrip = Me.ContextMenuStrip1
         Me.lstPayrollEmployeeAllowances.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lstPayrollEmployeeAllowances.FullRowSelect = True
         Me.lstPayrollEmployeeAllowances.GridLines = True
@@ -197,7 +202,7 @@ Partial Class frmPayrollEmployeeAllowance
         '
         'ColumnHeader1
         '
-        Me.ColumnHeader1.Text = "Deduction Name"
+        Me.ColumnHeader1.Text = "Allowance Name"
         Me.ColumnHeader1.Width = 300
         '
         'ColumnHeader2
@@ -260,9 +265,7 @@ Partial Class frmPayrollEmployeeAllowance
         '
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel4.Controls.Add(Me.btnClose)
-        Me.Panel4.Controls.Add(Me.btnSave)
         Me.Panel4.Controls.Add(Me.btnClear)
-        Me.Panel4.Controls.Add(Me.btnUpdate)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel4.Location = New System.Drawing.Point(3, 675)
         Me.Panel4.Name = "Panel4"
@@ -279,16 +282,6 @@ Partial Class frmPayrollEmployeeAllowance
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
-        'btnSave
-        '
-        Me.btnSave.Location = New System.Drawing.Point(312, 13)
-        Me.btnSave.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(100, 28)
-        Me.btnSave.TabIndex = 8
-        Me.btnSave.Text = "Save New"
-        Me.btnSave.UseVisualStyleBackColor = True
-        '
         'btnClear
         '
         Me.btnClear.Location = New System.Drawing.Point(16, 13)
@@ -298,16 +291,6 @@ Partial Class frmPayrollEmployeeAllowance
         Me.btnClear.TabIndex = 10
         Me.btnClear.Text = "Clear"
         Me.btnClear.UseVisualStyleBackColor = True
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.Location = New System.Drawing.Point(626, 13)
-        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(100, 28)
-        Me.btnUpdate.TabIndex = 9
-        Me.btnUpdate.Text = "Delete"
-        Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'Panel2
         '
@@ -405,6 +388,33 @@ Partial Class frmPayrollEmployeeAllowance
         Me.Label6.TabIndex = 16
         Me.Label6.Text = "Employee Name:"
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.BackColor = System.Drawing.Color.LightSeaGreen
+        Me.ContextMenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPDATEToolStripMenuItem, Me.DELETEToolStripMenuItem, Me.CLOSEToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(140, 88)
+        '
+        'UPDATEToolStripMenuItem
+        '
+        Me.UPDATEToolStripMenuItem.Name = "UPDATEToolStripMenuItem"
+        Me.UPDATEToolStripMenuItem.Size = New System.Drawing.Size(210, 28)
+        Me.UPDATEToolStripMenuItem.Text = "EDIT"
+        '
+        'DELETEToolStripMenuItem
+        '
+        Me.DELETEToolStripMenuItem.Name = "DELETEToolStripMenuItem"
+        Me.DELETEToolStripMenuItem.Size = New System.Drawing.Size(210, 28)
+        Me.DELETEToolStripMenuItem.Text = "DELETE"
+        '
+        'CLOSEToolStripMenuItem
+        '
+        Me.CLOSEToolStripMenuItem.Name = "CLOSEToolStripMenuItem"
+        Me.CLOSEToolStripMenuItem.Size = New System.Drawing.Size(210, 28)
+        Me.CLOSEToolStripMenuItem.Text = "CLOSE"
+        '
         'frmPayrollEmployeeAllowance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -426,18 +436,19 @@ Partial Class frmPayrollEmployeeAllowance
         Me.Panel4.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Panel7 As Panel
-    Friend WithEvents btnAdd As Button
+    Friend WithEvents btnSave As Button
     Friend WithEvents txtAmount As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents txtAbbreviation As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents cboDeductionName As ComboBox
+    Friend WithEvents cboAllowanceName As ComboBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Panel3 As Panel
     Friend WithEvents lstPayrollEmployeeAllowances As ListView
@@ -450,9 +461,7 @@ Partial Class frmPayrollEmployeeAllowance
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents Panel4 As Panel
     Friend WithEvents btnClose As Button
-    Friend WithEvents btnSave As Button
     Friend WithEvents btnClear As Button
-    Friend WithEvents btnUpdate As Button
     Friend WithEvents Panel2 As Panel
     Friend WithEvents txtContractType As TextBox
     Friend WithEvents Label3 As Label
@@ -462,4 +471,8 @@ Partial Class frmPayrollEmployeeAllowance
     Friend WithEvents Label1 As Label
     Friend WithEvents cboEmployeeName As ComboBox
     Friend WithEvents Label6 As Label
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents UPDATEToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DELETEToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CLOSEToolStripMenuItem As ToolStripMenuItem
 End Class

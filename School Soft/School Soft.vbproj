@@ -488,6 +488,12 @@
       <DependentUpon>crtInvRptStockAtHand.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\crtPayrollEmployeesReport.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtPayrollEmployeesReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\crtRptClassLists.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1412,6 +1418,10 @@
     <EmbeddedResource Include="Reports\crtInvRptStockAtHand.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crtInvRptStockAtHand.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crtPayrollEmployeesReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crtPayrollEmployeesReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\crtRptClassLists.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

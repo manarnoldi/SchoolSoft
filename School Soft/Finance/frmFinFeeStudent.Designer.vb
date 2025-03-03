@@ -149,7 +149,7 @@ Partial Class frmFinFeeStudent
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.55452!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.44548!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1296, 586)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1296, 580)
         Me.TableLayoutPanel1.TabIndex = 2
         '
         'Panel1
@@ -164,7 +164,7 @@ Partial Class frmFinFeeStudent
         Me.Panel1.Location = New System.Drawing.Point(4, 4)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(820, 182)
+        Me.Panel1.Size = New System.Drawing.Size(820, 180)
         Me.Panel1.TabIndex = 69
         '
         'Panel5
@@ -189,7 +189,7 @@ Partial Class frmFinFeeStudent
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel5.Location = New System.Drawing.Point(7, 35)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(804, 139)
+        Me.Panel5.Size = New System.Drawing.Size(804, 137)
         Me.Panel5.TabIndex = 69
         '
         'Label1
@@ -355,7 +355,7 @@ Partial Class frmFinFeeStudent
         Me.StatusStrip13.AutoSize = False
         Me.StatusStrip13.BackColor = System.Drawing.Color.MediumAquamarine
         Me.StatusStrip13.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.StatusStrip13.Location = New System.Drawing.Point(7, 174)
+        Me.StatusStrip13.Location = New System.Drawing.Point(7, 172)
         Me.StatusStrip13.Name = "StatusStrip13"
         Me.StatusStrip13.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
         Me.StatusStrip13.Size = New System.Drawing.Size(804, 6)
@@ -372,7 +372,7 @@ Partial Class frmFinFeeStudent
         Me.StatusStrip12.Location = New System.Drawing.Point(0, 35)
         Me.StatusStrip12.Name = "StatusStrip12"
         Me.StatusStrip12.Padding = New System.Windows.Forms.Padding(1, 4, 1, 27)
-        Me.StatusStrip12.Size = New System.Drawing.Size(7, 145)
+        Me.StatusStrip12.Size = New System.Drawing.Size(7, 143)
         Me.StatusStrip12.SizingGrip = False
         Me.StatusStrip12.TabIndex = 68
         Me.StatusStrip12.Text = "StatusStrip12"
@@ -396,7 +396,7 @@ Partial Class frmFinFeeStudent
         '
         Me.ToolStripStatusLabel3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
-        Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(128, 30)
+        Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(128, 29)
         Me.ToolStripStatusLabel3.Text = "New Student Fee"
         '
         'StatusStrip5
@@ -408,7 +408,7 @@ Partial Class frmFinFeeStudent
         Me.StatusStrip5.Location = New System.Drawing.Point(811, 0)
         Me.StatusStrip5.Name = "StatusStrip5"
         Me.StatusStrip5.Padding = New System.Windows.Forms.Padding(1, 4, 1, 27)
-        Me.StatusStrip5.Size = New System.Drawing.Size(7, 180)
+        Me.StatusStrip5.Size = New System.Drawing.Size(7, 178)
         Me.StatusStrip5.SizingGrip = False
         Me.StatusStrip5.TabIndex = 65
         Me.StatusStrip5.Text = "StatusStrip5"
@@ -420,9 +420,9 @@ Partial Class frmFinFeeStudent
         Me.Panel4.Controls.Add(Me.lstVoteHeads)
         Me.Panel4.Controls.Add(Me.lstStudent)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel4.Location = New System.Drawing.Point(3, 193)
+        Me.Panel4.Location = New System.Drawing.Point(3, 191)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(822, 390)
+        Me.Panel4.Size = New System.Drawing.Size(822, 386)
         Me.Panel4.TabIndex = 0
         '
         'Panel6
@@ -434,7 +434,7 @@ Partial Class frmFinFeeStudent
         Me.Panel6.Controls.Add(Me.StatusStrip9)
         Me.Panel6.Controls.Add(Me.StatusStrip10)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel6.Location = New System.Drawing.Point(0, 323)
+        Me.Panel6.Location = New System.Drawing.Point(0, 319)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(820, 65)
         Me.Panel6.TabIndex = 3
@@ -555,6 +555,7 @@ Partial Class frmFinFeeStudent
         Me.lstVoteHeads.ContextMenuStrip = Me.ContextMenuStrip2
         Me.lstVoteHeads.FullRowSelect = True
         Me.lstVoteHeads.GridLines = True
+        Me.lstVoteHeads.HideSelection = False
         Me.lstVoteHeads.Location = New System.Drawing.Point(438, -1)
         Me.lstVoteHeads.Margin = New System.Windows.Forms.Padding(4)
         Me.lstVoteHeads.Name = "lstVoteHeads"
@@ -600,6 +601,7 @@ Partial Class frmFinFeeStudent
         Me.lstStudent.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
         Me.lstStudent.FullRowSelect = True
         Me.lstStudent.GridLines = True
+        Me.lstStudent.HideSelection = False
         Me.lstStudent.Location = New System.Drawing.Point(8, -3)
         Me.lstStudent.Margin = New System.Windows.Forms.Padding(4)
         Me.lstStudent.Name = "lstStudent"
@@ -631,7 +633,7 @@ Partial Class frmFinFeeStudent
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel7.Location = New System.Drawing.Point(831, 3)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(462, 184)
+        Me.Panel7.Size = New System.Drawing.Size(462, 182)
         Me.Panel7.TabIndex = 70
         '
         'Panel3
@@ -654,7 +656,7 @@ Partial Class frmFinFeeStudent
         Me.Panel3.Location = New System.Drawing.Point(7, 25)
         Me.Panel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(446, 151)
+        Me.Panel3.Size = New System.Drawing.Size(446, 149)
         Me.Panel3.TabIndex = 70
         '
         'Label11
@@ -806,7 +808,7 @@ Partial Class frmFinFeeStudent
         '
         Me.ToolStripStatusLabel2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(130, 20)
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(130, 19)
         Me.ToolStripStatusLabel2.Text = "View Student Fee"
         '
         'StatusStrip4
@@ -814,7 +816,7 @@ Partial Class frmFinFeeStudent
         Me.StatusStrip4.AutoSize = False
         Me.StatusStrip4.BackColor = System.Drawing.Color.MediumAquamarine
         Me.StatusStrip4.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.StatusStrip4.Location = New System.Drawing.Point(7, 176)
+        Me.StatusStrip4.Location = New System.Drawing.Point(7, 174)
         Me.StatusStrip4.Name = "StatusStrip4"
         Me.StatusStrip4.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
         Me.StatusStrip4.Size = New System.Drawing.Size(446, 6)
@@ -831,7 +833,7 @@ Partial Class frmFinFeeStudent
         Me.StatusStrip3.Location = New System.Drawing.Point(0, 0)
         Me.StatusStrip3.Name = "StatusStrip3"
         Me.StatusStrip3.Padding = New System.Windows.Forms.Padding(1, 4, 1, 27)
-        Me.StatusStrip3.Size = New System.Drawing.Size(7, 182)
+        Me.StatusStrip3.Size = New System.Drawing.Size(7, 180)
         Me.StatusStrip3.SizingGrip = False
         Me.StatusStrip3.TabIndex = 68
         Me.StatusStrip3.Text = "StatusStrip3"
@@ -845,7 +847,7 @@ Partial Class frmFinFeeStudent
         Me.StatusStrip7.Location = New System.Drawing.Point(453, 0)
         Me.StatusStrip7.Name = "StatusStrip7"
         Me.StatusStrip7.Padding = New System.Windows.Forms.Padding(1, 4, 1, 27)
-        Me.StatusStrip7.Size = New System.Drawing.Size(7, 182)
+        Me.StatusStrip7.Size = New System.Drawing.Size(7, 180)
         Me.StatusStrip7.SizingGrip = False
         Me.StatusStrip7.TabIndex = 65
         Me.StatusStrip7.Text = "StatusStrip7"
@@ -855,9 +857,9 @@ Partial Class frmFinFeeStudent
         Me.Panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel8.Controls.Add(Me.lstVwStudFee)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel8.Location = New System.Drawing.Point(831, 193)
+        Me.Panel8.Location = New System.Drawing.Point(831, 191)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(462, 390)
+        Me.Panel8.Size = New System.Drawing.Size(462, 386)
         Me.Panel8.TabIndex = 71
         '
         'lstVwStudFee
@@ -868,10 +870,11 @@ Partial Class frmFinFeeStudent
         Me.lstVwStudFee.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lstVwStudFee.FullRowSelect = True
         Me.lstVwStudFee.GridLines = True
+        Me.lstVwStudFee.HideSelection = False
         Me.lstVwStudFee.Location = New System.Drawing.Point(0, 0)
         Me.lstVwStudFee.Margin = New System.Windows.Forms.Padding(4)
         Me.lstVwStudFee.Name = "lstVwStudFee"
-        Me.lstVwStudFee.Size = New System.Drawing.Size(460, 388)
+        Me.lstVwStudFee.Size = New System.Drawing.Size(460, 384)
         Me.lstVwStudFee.TabIndex = 0
         Me.lstVwStudFee.UseCompatibleStateImageBehavior = False
         Me.lstVwStudFee.View = System.Windows.Forms.View.Details
@@ -924,10 +927,10 @@ Partial Class frmFinFeeStudent
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripLabel2})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 617)
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 611)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.ShowItemToolTips = False
-        Me.ToolStrip1.Size = New System.Drawing.Size(1296, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1296, 31)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -936,7 +939,7 @@ Partial Class frmFinFeeStudent
         Me.ToolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
         Me.ToolStripLabel1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(106, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(106, 28)
         Me.ToolStripLabel1.Text = "Total Amount"
         '
         'ToolStripLabel2
@@ -944,7 +947,7 @@ Partial Class frmFinFeeStudent
         Me.ToolStripLabel2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
         Me.ToolStripLabel2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStripLabel2.Name = "ToolStripLabel2"
-        Me.ToolStripLabel2.Size = New System.Drawing.Size(48, 22)
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(48, 28)
         Me.ToolStripLabel2.Text = "Total:"
         '
         'StatusStrip2
@@ -966,7 +969,7 @@ Partial Class frmFinFeeStudent
         '
         Me.ToolStripStatusLabel1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(153, 26)
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(153, 25)
         Me.ToolStripStatusLabel1.Text = "SET STUDENT FEE"
         '
         'frmFinFeeStudent

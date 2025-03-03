@@ -494,6 +494,12 @@
       <DependentUpon>crtPayrollEmployeesReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\crtPayrollPayslipReport.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtPayrollPayslipReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\crtRptClassLists.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1422,6 +1428,10 @@
     <EmbeddedResource Include="Reports\crtPayrollEmployeesReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crtPayrollEmployeesReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crtPayrollPayslipReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crtPayrollPayslipReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\crtRptClassLists.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

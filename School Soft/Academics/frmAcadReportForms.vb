@@ -255,7 +255,7 @@ Public Class frmAcadReportForms
             MsgBox("Check the items to print.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly + MsgBoxStyle.ApplicationModal, "System Reply")
             Exit Sub
         Else
-            Dim result As MsgBoxResult = MsgBox("Print Seleced Items?", MsgBoxStyle.Question + MsgBoxStyle.ApplicationModal + MsgBoxStyle.YesNo, "Confirm Transaction")
+            Dim result As MsgBoxResult = MsgBox("Print Selected Items?", MsgBoxStyle.Question + MsgBoxStyle.ApplicationModal + MsgBoxStyle.YesNo, "Confirm Transaction")
             If result = MsgBoxResult.No Then
                 Exit Sub
             End If

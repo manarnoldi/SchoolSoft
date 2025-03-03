@@ -551,7 +551,12 @@ C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.vbproj.ResolveComReference.cache
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollAllowances.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollDeductions.resources
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollEmployeeAllowance.resources
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollEmployeeDeduction.resources
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollEmployeePayroll.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollNSSF.resources
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollProcessedRpt.resources
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollRegister.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollReliefs.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmAcadExaminationNames.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmAcadExamResultsView.resources
@@ -665,7 +670,4 @@ C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.exe
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.xml
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School Soft.pdb
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollRegister.resources
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollEmployeeAllowance.resources
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollEmployeeDeduction.resources
-C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollEmployeePayroll.resources
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollPayslips.resources

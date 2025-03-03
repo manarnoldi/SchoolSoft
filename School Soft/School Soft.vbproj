@@ -164,6 +164,18 @@
     <Compile Include="Payroll\frmPayrollNSSF.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payroll\frmPayrollPayslips.Designer.vb">
+      <DependentUpon>frmPayrollPayslips.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payroll\frmPayrollPayslips.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payroll\frmPayrollProcessedRpt.Designer.vb">
+      <DependentUpon>frmPayrollProcessedRpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payroll\frmPayrollProcessedRpt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payroll\frmPayrollRegister.Designer.vb">
       <DependentUpon>frmPayrollRegister.vb</DependentUpon>
     </Compile>
@@ -453,10 +465,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\crtInvRptIssuesMonthly.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>crtInvRptIssuesMonthly.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Reports\crtInvRptPendingReorder.vb">
       <AutoGen>True</AutoGen>
@@ -1210,6 +1222,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payroll\frmPayrollNSSF.resx">
       <DependentUpon>frmPayrollNSSF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payroll\frmPayrollPayslips.resx">
+      <DependentUpon>frmPayrollPayslips.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payroll\frmPayrollProcessedRpt.resx">
+      <DependentUpon>frmPayrollProcessedRpt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payroll\frmPayrollRegister.resx">
       <DependentUpon>frmPayrollRegister.vb</DependentUpon>

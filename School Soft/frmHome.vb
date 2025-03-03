@@ -671,6 +671,9 @@ Public Class frmHome
                     Case "nodeEmployeeDeductions"
                         frmPayrollEmployeeDeduction.MdiParent = Me
                         frmPayrollEmployeeDeduction.Show()
+                    Case "nodeEmployeeSalaries"
+                        frmPayrollEmployeePayroll.MdiParent = Me
+                        frmPayrollEmployeePayroll.Show()
                 End Select
             Else
                 MsgBox("You have no rights to access this module!", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")

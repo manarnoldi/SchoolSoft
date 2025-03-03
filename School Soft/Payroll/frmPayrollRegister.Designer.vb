@@ -391,10 +391,12 @@ Partial Class frmPayrollRegister
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.LightSkyBlue
-        Me.ClientSize = New System.Drawing.Size(1390, 748)
+        Me.ClientSize = New System.Drawing.Size(1738, 1123)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmPayrollRegister"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Payroll Register"
         Me.TableLayoutPanel1.ResumeLayout(False)

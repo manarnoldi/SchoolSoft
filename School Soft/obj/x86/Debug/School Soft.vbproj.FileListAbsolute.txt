@@ -668,3 +668,4 @@ C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollRegister.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollEmployeeAllowance.resources
 C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollEmployeeDeduction.resources
+C:\Users\HP\Documents\Visual Studio 2019\Projects\schoolsoft\School Soft\obj\x86\Debug\School_Soft.frmPayrollEmployeePayroll.resources

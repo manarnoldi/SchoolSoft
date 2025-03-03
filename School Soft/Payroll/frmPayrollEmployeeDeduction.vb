@@ -122,7 +122,6 @@ Public Class frmPayrollEmployeeDeduction
         End Try
     End Sub
     Private Sub loadEmployeeDetails(ByVal empId As Integer)
-
         Try
             If conn.State = ConnectionState.Closed Then
                 conn.Open()

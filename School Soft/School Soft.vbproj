@@ -620,6 +620,12 @@
     <Compile Include="School\frmClassHeads.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="School\frmSchoolStaff.Designer.vb">
+      <DependentUpon>frmSchoolStaff.vb</DependentUpon>
+    </Compile>
+    <Compile Include="School\frmSchoolStaff.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Security\frmDomainRights.Designer.vb">
       <DependentUpon>frmDomainRights.vb</DependentUpon>
     </Compile>
@@ -1033,12 +1039,6 @@
       <DependentUpon>frmSchoolPeriods.vb</DependentUpon>
     </Compile>
     <Compile Include="School\frmSchoolPeriods.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="School\frmSchoolStaff.Designer.vb">
-      <DependentUpon>frmSchoolStaff.vb</DependentUpon>
-    </Compile>
-    <Compile Include="School\frmSchoolStaff.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="School\frmSchTeachingRooms.Designer.vb">
@@ -1512,6 +1512,9 @@
     <EmbeddedResource Include="School\frmClassHeads.resx">
       <DependentUpon>frmClassHeads.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="School\frmSchoolStaff.resx">
+      <DependentUpon>frmSchoolStaff.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Security\frmDomainRights.resx">
       <DependentUpon>frmDomainRights.vb</DependentUpon>
     </EmbeddedResource>
@@ -1718,9 +1721,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="School\frmSchoolPeriods.resx">
       <DependentUpon>frmSchoolPeriods.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="School\frmSchoolStaff.resx">
-      <DependentUpon>frmSchoolStaff.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="School\frmSchTeachingRooms.resx">
       <DependentUpon>frmSchTeachingRooms.vb</DependentUpon>

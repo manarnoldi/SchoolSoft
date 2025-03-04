@@ -15,12 +15,9 @@ Public Class frmSchoolStaff
             clearTexts()
             loadCombos()
             loadSchoolStaff()
-            Me.rbMarriedFalse.Checked = False
-            Me.rbMarriedTrue.Checked = False
-            Me.rbSexFemale.Checked = False
-            Me.rbSexMale.Checked = False
-            Me.rbHeadTrue.Checked = False
-            Me.rbHeadFalse.Checked = False
+            Me.cbMale.Checked = False
+            Me.cbMarried.Checked = False
+            Me.cbHead.Checked = False
         Catch ex As Exception
             MsgBox(Err.GetException.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
         Finally
@@ -33,11 +30,11 @@ Public Class frmSchoolStaff
     Private Sub frmSchoolStaff_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Me.Paint
         If Me.IsMdiChild Then
             Dim PnlLoc As New Point
-            PnlLoc.X = CInt((Me.Width - Me.pnlSchoolStaff.Width) / 2)
-            PnlLoc.Y = CInt((Me.Height - Me.pnlSchoolStaff.Height) / 2.5)
-            Me.pnlSchoolStaff.Location = PnlLoc
+            PnlLoc.X = CInt((Me.Width - Me.TableLayoutPanel1.Width) / 2)
+            PnlLoc.Y = CInt((Me.Height - Me.TableLayoutPanel1.Height) / 2.5)
+            Me.TableLayoutPanel1.Location = PnlLoc
         Else
-            Me.pnlSchoolStaff.Dock = DockStyle.Fill
+            Me.TableLayoutPanel1.Dock = DockStyle.Fill
         End If
     End Sub
     Private Sub loadCombos()
@@ -153,13 +150,10 @@ Public Class frmSchoolStaff
         Me.DTPDOB.Value = Date.Now
         Me.DTPDOE.Value = Date.Now
         Me.DTPDOR.Value = Date.Now
-        Me.rbMarriedFalse.Checked = False
-        Me.rbMarriedTrue.Checked = False
-        Me.rbSexFemale.Checked = False
-        Me.rbSexMale.Checked = False
+        Me.cbMale.Checked = False
+        Me.cbMarried.Checked = False
+        Me.cbHead.Checked = False
         Me.txtBasicSalary.Text = ""
-        Me.rbHeadTrue.Checked = False
-        Me.rbHeadFalse.Checked = False
         Me.txtEmpNo.Tag = Nothing
         Me.txtAddress.Text = ""
         Me.txtEmail.Text = ""
@@ -169,6 +163,10 @@ Public Class frmSchoolStaff
         Me.txtLName.Text = ""
         Me.txtMName.Text = ""
         Me.txtPhoneNo.Text = ""
+
+        Me.txtNSSFNo.Text = ""
+        Me.txtShifNo.Text = ""
+        Me.txtKRAPin.Text = ""
 
         loadCombos()
     End Sub
@@ -192,8 +190,9 @@ Public Class frmSchoolStaff
             Me.DTPDOR.Enabled = True
             Me.txtEmpNo.Enabled = True
             Me.txtIdNo.Enabled = True
-            Me.rbSexFemale.Enabled = True
-            Me.rbSexMale.Enabled = True
+            Me.cbMale.Enabled = True
+            Me.cbMarried.Enabled = True
+            Me.cbHead.Enabled = True
             Me.txtBasicSalary.Enabled = True
             Me.txtEmpNo.Tag = Nothing
             Me.cboContractType.Text = ""
@@ -205,6 +204,9 @@ Public Class frmSchoolStaff
             Me.btnDelete.Enabled = False
             Me.btnUpdate.Enabled = False
             Me.btnSave.Enabled = True
+            Me.txtNSSFNo.Enabled = True
+            Me.txtShifNo.Enabled = True
+            Me.txtKRAPin.Enabled = True
         End Try
     End Sub
     Private Function checkIfHeadEntered(ByVal empNo As String)
@@ -244,30 +246,10 @@ Public Class frmSchoolStaff
             MsgBox("Contract Type Missing", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
             passQuery = False
             Exit Sub
-        ElseIf Me.rbHeadFalse.Checked = False And Me.rbHeadTrue.Checked = False Then
-            MsgBox("Select If HeadTeacher", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-            passQuery = False
-            Exit Sub
-        ElseIf Me.rbSexFemale.Checked = False And Me.rbSexMale.Checked = False Then
-            MsgBox("Select Staff Sex", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-            passQuery = False
-            Exit Sub
         ElseIf Me.txtBasicSalary.Text.Trim.Length <= 0 Then
             MsgBox("Enter Staff Basic Salary", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
             passQuery = False
             Exit Sub
-            'ElseIf DateDiff(DateInterval.Day, Date.Now.Date, Me.DTPDOE.Value.Date) > 0 Then
-            '    MsgBox("Date of Employment Cannot be more than Today.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-            '    passQuery = False
-            '    Exit Sub
-            'ElseIf DateDiff(DateInterval.Day, Date.Now.Date, Me.DTPDOR.Value.Date) > 0 Then
-            '    MsgBox("Date of Registration Cannot be more than Today.", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-            '    passQuery = False
-            '    Exit Sub
-            'ElseIf DateDiff(DateInterval.Year, Me.DTPDOB.Value.Date, Date.Now.Date) < 18 Then
-            '    MsgBox("Employee is UnderAge", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "Error Detected")
-            '    passQuery = False
-            '    Exit Sub
         End If
         passQuery = True
     End Sub
@@ -279,7 +261,7 @@ Public Class frmSchoolStaff
         dbconnection()
         cmdSchStaff.Connection = conn
         cmdSchStaff.CommandType = CommandType.Text
-        cmdSchStaff.CommandText = "SELECT * FROM  tblSchoolStaff WHERE (status='True')AND (empNo=@empNo)" & _
+        cmdSchStaff.CommandText = "SELECT * FROM  tblSchoolStaff WHERE (status='True')AND (empNo=@empNo)" &
             vbNewLine & " AND (idNumber=@idNumber)"
         cmdSchStaff.Parameters.Clear()
         cmdSchStaff.Parameters.AddWithValue("@empNo", Me.txtEmpNo.Text.Trim)
@@ -293,18 +275,9 @@ Public Class frmSchoolStaff
         reader.Close()
     End Sub
     Private Sub CheckForExistenceOne()
-        Dim MaritalStatus As Boolean = False
-        Dim sex As Boolean = True
-        If Me.rbMarriedFalse.Checked = True Then
-            MaritalStatus = False
-        ElseIf Me.rbMarriedTrue.Checked = True Then
-            MaritalStatus = True
-        End If
-        If Me.rbSexFemale.Checked = True Then
-            sex = False
-        ElseIf Me.rbSexMale.Checked = True Then
-            sex = True
-        End If
+        Dim MaritalStatus As Boolean = Me.cbMarried.Checked
+        Dim sex As Boolean = Me.cbMale.Checked
+
         dbconnection()
         cmdSchStaff.Connection = conn
         cmdSchStaff.CommandType = CommandType.Text
@@ -313,7 +286,8 @@ Public Class frmSchoolStaff
             vbNewLine & " AND (phoneNo=@phoneNo) AND (sex=@sex) AND (empType=@empType) AND (residence=@residence)" &
             vbNewLine & " AND (contactAddress=@contactAddress) AND (title=@title) AND (dateOfEmployment=@dateOfEmployment)" &
             vbNewLine & " AND (dateOfBirth=@dateOfBirth) AND (dateOfReg=@dateOfReg) AND (regBy=@regBy) AND (BasicSalary=@BasicSalary)" &
-            vbNewLine & " AND (maritalStatus=@maritalStatus) AND (contractType=@contractType) AND (religion=@religion)"
+            vbNewLine & " AND (maritalStatus=@maritalStatus) AND (contractType=@contractType) AND (religion=@religion)" &
+            vbNewLine & " AND (KRAPIN=@KRAPIN) AND (NSSFNo=@NSSFNo) AND (SHANo=@SHANo)"
         cmdSchStaff.Parameters.Clear()
         cmdSchStaff.Parameters.AddWithValue("@empNo", Me.txtEmpNo.Text.Trim)
         cmdSchStaff.Parameters.AddWithValue("@FName", Me.txtFName.Text.Trim)
@@ -335,6 +309,9 @@ Public Class frmSchoolStaff
         cmdSchStaff.Parameters.AddWithValue("@contractType", Me.cboContractType.Text.Trim)
         cmdSchStaff.Parameters.AddWithValue("@religion", Me.cboReligion.Text.Trim)
         cmdSchStaff.Parameters.AddWithValue("@BasicSalary", Me.txtBasicSalary.Text.Trim)
+        cmdSchStaff.Parameters.AddWithValue("@KRAPIN", Me.txtKRAPin.Text.Trim)
+        cmdSchStaff.Parameters.AddWithValue("@NSSFNo", Me.txtNSSFNo.Text.Trim)
+        cmdSchStaff.Parameters.AddWithValue("@SHANo", Me.txtShifNo.Text.Trim)
         reader = cmdSchStaff.ExecuteReader
         If reader.HasRows Then
             recordExists = True
@@ -344,10 +321,10 @@ Public Class frmSchoolStaff
         reader.Close()
     End Sub
     Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
-        Dim MaritalStatus As Boolean = False
+        Dim MaritalStatus As Boolean = Me.cbMarried.Checked
         Dim headFound As Boolean = True
-        Dim sex As Boolean = True
-        Dim isHead As Boolean = False
+        Dim sex As Boolean = Me.cbMale.Checked
+        Dim isHead As Boolean = Me.cbHead.Checked
         Try
             If conn.State = ConnectionState.Closed Then
                 conn.Open()
@@ -367,28 +344,14 @@ Public Class frmSchoolStaff
                 Exit Sub
             End If
 
-            If Me.rbHeadTrue.Checked = True Then
+            If Me.cbHead.Checked Then
                 headFound = checkIfHeadEntered(Me.txtEmpNo.Text.Trim)
                 If headFound = True Then
                     MsgBox("School head teacher already registered!", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "System Reply")
                     Exit Sub
                 End If
             End If
-            If Me.rbMarriedFalse.Checked = True Then
-                MaritalStatus = False
-            ElseIf Me.rbMarriedTrue.Checked = True Then
-                MaritalStatus = True
-            End If
-            If Me.rbSexFemale.Checked = True Then
-                sex = False
-            ElseIf Me.rbSexMale.Checked = True Then
-                sex = True
-            End If
-            If Me.rbHeadFalse.Checked = True Then
-                isHead = False
-            ElseIf Me.rbHeadTrue.Checked = True Then
-                isHead = True
-            End If
+
             queryType = "INSERT"
             Dim result As MsgBoxResult = MsgBox("Save Record?", MsgBoxStyle.Question + MsgBoxStyle.ApplicationModal + MsgBoxStyle.YesNo, "Confirm Transaction")
             If result = MsgBoxResult.Yes Then
@@ -418,6 +381,9 @@ Public Class frmSchoolStaff
                 cmdSchStaff.Parameters.AddWithValue("@religion", Me.cboReligion.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@isHead", isHead)
                 cmdSchStaff.Parameters.AddWithValue("@BasicSalary", Me.txtBasicSalary.Text.Trim)
+                cmdSchStaff.Parameters.AddWithValue("@KRAPIN", Me.txtKRAPin.Text.Trim)
+                cmdSchStaff.Parameters.AddWithValue("@NSSFNo", Me.txtNSSFNo.Text.Trim)
+                cmdSchStaff.Parameters.AddWithValue("@SHANo", Me.txtShifNo.Text.Trim)
                 Rec = cmdSchStaff.ExecuteNonQuery
                 If Rec > 0 Then
                     MsgBox("Record Saved!", MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "SuccessFul Transaction")
@@ -432,8 +398,8 @@ Public Class frmSchoolStaff
             Me.txtEmpNo.Enabled = True
             Me.txtIdNo.Enabled = True
             Me.txtBasicSalary.Enabled = True
-            Me.rbSexFemale.Enabled = True
-            Me.rbSexMale.Enabled = True
+            Me.cbMarried.Enabled = True
+            Me.cbMale.Enabled = True
             Me.btnSave.Enabled = True
             Me.btnDelete.Enabled = False
             Me.btnUpdate.Enabled = False
@@ -486,30 +452,14 @@ Public Class frmSchoolStaff
                         Me.DTPDOB.Value = IIf(DBNull.Value.Equals(reader!dateOfBirth), Date.Now.Date, reader!dateOfBirth)
                         Me.DTPDOE.Value = IIf(DBNull.Value.Equals(reader!dateOfEmployment), Date.Now.Date, reader!dateOfEmployment)
                         Me.DTPDOR.Value = IIf(DBNull.Value.Equals(reader!dateOfReg), Date.Now.Date, reader!dateOfReg)
-                        If IIf(DBNull.Value.Equals(reader!maritalStatus), "", reader!maritalStatus) = "True" Then
-                            Me.rbMarriedTrue.Checked = True
-                        ElseIf IIf(DBNull.Value.Equals(reader!maritalStatus), "", reader!maritalStatus) = "False" Then
-                            Me.rbMarriedFalse.Checked = True
-                        Else
-                            Me.rbMarriedTrue.Checked = False
-                            Me.rbMarriedFalse.Checked = False
-                        End If
-                        If IIf(DBNull.Value.Equals(reader!sex), "", reader!sex) = "True" Then
-                            Me.rbSexMale.Checked = True
-                        ElseIf IIf(DBNull.Value.Equals(reader!sex), "", reader!sex) = "False" Then
-                            Me.rbSexFemale.Checked = True
-                        Else
-                            Me.rbSexMale.Checked = False
-                            Me.rbSexFemale.Checked = False
-                        End If
-                        If IIf(DBNull.Value.Equals(reader!isHead), "", reader!isHead) = "True" Then
-                            Me.rbHeadTrue.Checked = True
-                        ElseIf IIf(DBNull.Value.Equals(reader!isHead), "", reader!isHead) = "False" Then
-                            Me.rbHeadFalse.Checked = True
-                        Else
-                            Me.rbHeadFalse.Checked = False
-                            Me.rbHeadTrue.Checked = False
-                        End If
+
+                        Me.cbHead.Checked = IIf(DBNull.Value.Equals(reader!ishead), Date.Now.Date, reader!ishead)
+                        Me.cbMale.Checked = IIf(DBNull.Value.Equals(reader!sex), Date.Now.Date, reader!sex)
+                        Me.cbMarried.Checked = IIf(DBNull.Value.Equals(reader!maritalStatus), Date.Now.Date, reader!maritalStatus)
+                        IIf(DBNull.Value.Equals(reader!dateOfReg), Date.Now.Date, reader!dateOfReg)
+                        Me.txtNSSFNo.Text = IIf(DBNull.Value.Equals(reader!NSSFNo), Date.Now.Date, reader!NSSFNo)
+                        Me.txtShifNo.Text = IIf(DBNull.Value.Equals(reader!SHANo), Date.Now.Date, reader!SHANo)
+                        Me.txtKRAPin.Text = IIf(DBNull.Value.Equals(reader!KRAPIN), Date.Now.Date, reader!KRAPIN)
                     End While
                 End If
                 reader.Close()
@@ -530,9 +480,6 @@ Public Class frmSchoolStaff
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         Dim headFound As Boolean = True
         Try
-            Dim MaritalStatus As Boolean = False
-            Dim isHead As Boolean = False
-            Dim sex As Boolean = False
             If conn.State = ConnectionState.Closed Then
                 conn.Open()
             End If
@@ -549,30 +496,6 @@ Public Class frmSchoolStaff
             checkEnteredData()
             If passQuery = False Then
                 Exit Sub
-            End If
-            'If Me.rbHeadTrue.Checked = True Then
-            '    headFound = checkIfHeadEntered(Me.txtEmpNo.Text.Trim)
-            '    If headFound = True Then
-            '        MsgBox("School head teacher already registered!", MsgBoxStyle.Exclamation + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "System Reply")
-            '        Exit Sub
-            '    End If
-            'End If
-
-            If Me.rbMarriedFalse.Checked = True Then
-                MaritalStatus = False
-            ElseIf Me.rbMarriedTrue.Checked = True Then
-                MaritalStatus = True
-            End If
-            If Me.rbHeadFalse.Checked = True Then
-                isHead = False
-            ElseIf Me.rbHeadTrue.Checked = True Then
-                isHead = True
-            End If
-
-            If Me.rbSexMale.Checked = True Then
-                sex = True
-            ElseIf Me.rbSexFemale.Checked = True Then
-                sex = False
             End If
 
             Dim result As MsgBoxResult = MsgBox("Update Record?", MsgBoxStyle.Question + MsgBoxStyle.ApplicationModal + MsgBoxStyle.YesNo, "Confirm Transaction")
@@ -594,13 +517,16 @@ Public Class frmSchoolStaff
                 cmdSchStaff.Parameters.AddWithValue("@contactAddress", Me.txtAddress.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@title", Me.cboEmpTitle.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@regBy", userName.Trim)
-                cmdSchStaff.Parameters.AddWithValue("@maritalStatus", MaritalStatus)
+                cmdSchStaff.Parameters.AddWithValue("@maritalStatus", Me.cbMarried.Checked)
                 cmdSchStaff.Parameters.AddWithValue("@contractType", Me.cboContractType.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@religion", Me.cboReligion.Text.Trim)
-                cmdSchStaff.Parameters.AddWithValue("@isHead", isHead)
+                cmdSchStaff.Parameters.AddWithValue("@isHead", Me.cbHead.Checked)
                 cmdSchStaff.Parameters.AddWithValue("@idNumber", Me.txtIdNo.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@BasicSalary", Me.txtBasicSalary.Text.Trim)
-                cmdSchStaff.Parameters.AddWithValue("@sex", sex)
+                cmdSchStaff.Parameters.AddWithValue("@sex", Me.cbMale.Checked)
+                cmdSchStaff.Parameters.AddWithValue("@KRAPIN", Me.txtKRAPin.Text.Trim)
+                cmdSchStaff.Parameters.AddWithValue("@NSSFNo", Me.txtNSSFNo.Text.Trim)
+                cmdSchStaff.Parameters.AddWithValue("@SHANo", Me.txtShifNo.Text.Trim)
                 Rec = cmdSchStaff.ExecuteNonQuery
                 If Rec > 0 Then
                     MsgBox("Record Updated!", MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "SuccessFul Transaction")
@@ -614,8 +540,8 @@ Public Class frmSchoolStaff
                 Me.txtEmpNo.Enabled = True
                 Me.txtIdNo.Enabled = True
                 Me.txtBasicSalary.Enabled = True
-                Me.rbSexFemale.Enabled = True
-                Me.rbSexMale.Enabled = True
+                Me.cbMale.Enabled = True
+                Me.cbMarried.Enabled = True
                 Me.btnSave.Enabled = True
                 Me.btnDelete.Enabled = False
                 Me.btnUpdate.Enabled = False
@@ -665,6 +591,10 @@ Public Class frmSchoolStaff
                 cmdSchStaff.Parameters.AddWithValue("@contractType", Me.cboContractType.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@religion", Me.cboReligion.Text.Trim)
                 cmdSchStaff.Parameters.AddWithValue("@BasicSalary", Me.txtBasicSalary.Text.Trim)
+                cmdSchStaff.Parameters.AddWithValue("@KRAPIN", Me.txtKRAPin.Text.Trim)
+                cmdSchStaff.Parameters.AddWithValue("@NSSFNo", Me.txtNSSFNo.Text.Trim)
+                cmdSchStaff.Parameters.AddWithValue("@SHANo", Me.txtShifNo.Text.Trim)
+
                 Rec = cmdSchStaff.ExecuteNonQuery
                 If Rec > 0 Then
                     MsgBox("Record Deleted!", MsgBoxStyle.Information + MsgBoxStyle.ApplicationModal + MsgBoxStyle.OkOnly, "SuccessFul Transaction")
@@ -678,8 +608,10 @@ Public Class frmSchoolStaff
                 Me.txtEmpNo.Enabled = True
                 Me.txtIdNo.Enabled = True
                 Me.txtBasicSalary.Enabled = True
-                Me.rbSexFemale.Enabled = True
-                Me.rbSexMale.Enabled = True
+                Me.cbMale.Enabled = True
+                Me.cbMarried.Enabled = True
+                'Me.rbSexFemale.Enabled = True
+                'Me.rbSexMale.Enabled = True
                 Me.btnSave.Enabled = True
                 Me.btnDelete.Enabled = False
                 Me.btnUpdate.Enabled = False
